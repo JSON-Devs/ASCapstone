@@ -58,13 +58,15 @@ header{
 
 /*Main Struct*/
 
-#txtCoverLetter::-webkit-scrollbar              { background-color:#34AB00; }
-#txtCoverLetter::-webkit-scrollbar-button       { background-color:#000; }
-#txtCoverLetter::-webkit-scrollbar-track        { background-color:#34AB00; }
-#txtCoverLetter::-webkit-scrollbar-track-piece  { background-color:#34AB00; }
-#txtCoverLetter::-webkit-scrollbar-thumb        { background-color:#34AB00; }
-#txtCoverLetter::-webkit-scrollbar-corner       { background-color:#34AB00; }
-#txtCoverLetter::-webkit-resizer                { background-color:#34AB00; }
+#txtCoverLetter{
+	scrollbar-face-color: #34AB00; 
+	scrollbar-track-color: #34AB00; 
+	scrollbar-arrow-color: #34AB00; 
+	scrollbar-highlight-color: #34AB00; 
+	scrollbar-shadow-color: #34AB00; 
+	scrollbar-3dlight-color: #34AB00; 
+	scrollbar-darkshadow-color: #34AB00; 
+}
 
 .wrapper{
 	height:auto;
