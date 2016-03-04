@@ -21,6 +21,7 @@ html input,textarea,select{
 	color:#34AB00;
 	background-color:black;
 	border:2px solid #34AB00;
+	resize:none;
 }
 
 
