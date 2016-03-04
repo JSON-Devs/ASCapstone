@@ -9,15 +9,15 @@
 }
 
 html{
-	height:100%;
+	min-height:100%;
+	position:relative;
 }
 
 
 body{
-	margin: 0 0 100px;
+	margin:0 0 100px;
 	background-color: #a7d2d9;
 	background-image: url(../images/little-pluses.png);
-	margin-bottom:-340px;
 }
 /*Header*/
 header{
@@ -453,14 +453,12 @@ footer{
 	background-color:#4a4b4a;
 	border-top:4px solid #363636;
 	text-align:center;
-    /*left: 0;
-    bottom:0px;*/
+	position:absolute;
+	left:0;
+	bottom:0;
 	
 }
 
-.push{
-	height:333px;
-}
 footer p{
 	font-family:aldo;
 	color:white;
