@@ -48,7 +48,11 @@ function changeStyle(json){
 ///////////////////
 //Profile Picture//
 ///////////////////
-
+function loadProfilePicture(json){
+	var imageTag = json.Result[0].pictureLink;
+	//var el = document.getElementById("mePicture").style.backgroundImage;
+		document.getElementById("mePicture").style.backgroundImage = "url("+imageTag+")";
+}
 ///////////////////////
 //End Profile Picture//
 ///////////////////////
@@ -88,6 +92,7 @@ function loadBasic(){
 		fillBasic(json);
 		fillBasic2(json);
 		changeStyle(json);
+		loadProfilePicture(json);
 		});
 }
 
