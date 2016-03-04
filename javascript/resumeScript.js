@@ -12,6 +12,7 @@ function searchLink(){
 		$.getJSON( "php/php_queries.php", { action:"searchLink", linkID: linkID})
 	.done(function(json){
 		direct(json);
+	
 		});
 }
 //direct
@@ -20,7 +21,7 @@ function direct(json){
 	
 	if(json.Result == false)
 	{
-		console.log('hi');
+	
 		window.location = "index.html";
 	}
 	if(json.Result.active == false)
@@ -28,21 +29,24 @@ function direct(json){
 		window.location = "index.html";
 	}
 	else{
-		console.log(json.Result.userID);
+		linkCount(json);
 		localStorage.setItem("resumeID", json.Result.userID );
 		var ls = localStorage.getItem("resumeID");
-		console.log(ls);
 			$.getJSON( "php/php_queries.php", { action:"fillUser", userID: ls } )
-	.done(function(json){		
-		findActive(json);
-		});
+			.done(function(json){		
+				findActive(json);
+			});
 			
 	}
 }
 //pull all data from user
-
+function linkCount(json){
+	var timesViewed = json.Result.timesViewed;
+	timesViewed++;
+	var linkID = json.Result.linkID;
+	$.getJSON( "php/php_queries.php", { action:"linkViewCount", linkID: linkID, timesViewed: timesViewed } );
+}
 function findActive(json){
-	console.log(json.Result[0].isActive);
 	if(json.Result[0].isActive == false){
 		window.location = "index.html";
 	}
@@ -171,6 +175,6 @@ $(window).load(function(){
 		reportUser();
 	});
 	$("#rhomeLink").click(function(){
-		ls = 0;
+		localStorage.setItem("resumeID", "" );
 	});
 });
