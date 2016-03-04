@@ -23,7 +23,14 @@ body{
 header{
 	overflow:auto;
 	height:146px;
-	background-color:#0ba2ba;
+	background: rgba(11,160,183,1);
+	background: -moz-linear-gradient(left, rgba(11,160,183,1) 0%, rgba(126,224,237,1) 91%, rgba(126,224,237,1) 96%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(11,160,183,1)), color-stop(91%, rgba(126,224,237,1)), color-stop(96%, rgba(126,224,237,1)));
+	background: -webkit-linear-gradient(left, rgba(11,160,183,1) 0%, rgba(126,224,237,1) 91%, rgba(126,224,237,1) 96%);
+	background: -o-linear-gradient(left, rgba(11,160,183,1) 0%, rgba(126,224,237,1) 91%, rgba(126,224,237,1) 96%);
+	background: -ms-linear-gradient(left, rgba(11,160,183,1) 0%, rgba(126,224,237,1) 91%, rgba(126,224,237,1) 96%);
+	background: linear-gradient(to right, rgba(11,160,183,1) 0%, rgba(126,224,237,1) 91%, rgba(126,224,237,1) 96%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0ba0b7', endColorstr='#7ee0ed', GradientType=1 );
 	border-bottom:4px solid #363636;
 }
 
@@ -73,8 +80,8 @@ margin: 0 auto -300;
 	min-height:400px;
 	width:350px;
 	border:solid black 2px;
-	border-radius:10px;
-	background-color:#e3e1e1;
+	border-radius:2px;
+	background-color: rgba(218,237,242,0.8);
 	margin:auto;
 	margin-top:40px;
 	margin-bottom:-150px;
