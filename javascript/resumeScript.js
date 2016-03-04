@@ -56,6 +56,19 @@ function findActive(json){
 			loadBasic();
 			loadEmp();
 			loadEdu();
+			
+	}
+}
+function changeStyle(json){
+
+	if (json.Result[0].styleType === '0') {
+		document.getElementById('pageStyle').setAttribute('href', 'css/mainStyle.css');
+		document.getElementById('proLogo').setAttribute('src', 'images/logo.png');
+	}
+	else if (json.Result[0].styleType === '1') {
+		document.getElementById('pageStyle').setAttribute('href', 'css/binaryStyle.css');
+		document.getElementById('proLogo').setAttribute('src', 'images/binaryLogo.png');
+	
 	}
 }
 function loadVideo(){
@@ -143,6 +156,7 @@ function loadBasic(){
 		$.getJSON( "php/php_queries.php", { action:"fillUser", userID: ls})
 	.done(function(json){
 		fillBasic2(json);
+		changeStyle(json);
 		});
 	
 	
