@@ -59,12 +59,11 @@ header{
 /*Main Struct*/
 
 ::-webkit-scrollbar              { background-color:#34AB00; }
-::-webkit-scrollbar-button       { background-color:#000; }
+::-webkit-scrollbar-button       { background-color:#206801; }
 ::-webkit-scrollbar-track        { background-color:#34AB00; }
 ::-webkit-scrollbar-track-piece  { background-color:#34AB00; }
-::-webkit-scrollbar-thumb        { background-color:#34AB00; }
-::-webkit-scrollbar-corner       { background-color:#34AB00; }
-::-webkit-resizer                { background-color:#34AB00; }
+::-webkit-scrollbar-thumb        { background-color:#298202; }
+::-webkit-scrollbar-corner       { background-color:#206801; }
 
 .wrapper{
 	height:auto;
