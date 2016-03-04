@@ -157,9 +157,15 @@ function loadBasic(){
 	.done(function(json){
 		fillBasic2(json);
 		changeStyle(json);
+		loadProfilePicture(json);
 		});
 	
 	
+}
+function loadProfilePicture(json){
+	var imageTag = json.Result[0].pictureLink;
+	//var el = document.getElementById("mePicture").style.backgroundImage;
+		document.getElementById("mePicture").style.backgroundImage = "url("+imageTag+")";
 }
 function fillBasic2(json){
 	var basicInfo = "<h3 id='meName'>" + json.Result[0].firstName + " " + json.Result[0].lastName + "</h3>" +
