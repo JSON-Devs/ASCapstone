@@ -21,6 +21,13 @@ html input,textarea,select{
 	color:#34AB00;
 	background-color:black;
 	border:2px solid #34AB00;
+	scrollbar-face-color: #34AB00; 
+	scrollbar-track-color: #34AB00; 
+	scrollbar-arrow-color: #34AB00; 
+	scrollbar-highlight-color: #34AB00; 
+	scrollbar-shadow-color: #34AB00; 
+	scrollbar-3dlight-color: #34AB00; 
+	scrollbar-darkshadow-color: #34AB00; 
 }
 
 
