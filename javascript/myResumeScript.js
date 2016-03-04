@@ -41,7 +41,7 @@ function changeStyle(json){
 	else if (json.Result[0].styleType === '1') {
 		document.getElementById('pageStyle').setAttribute('href', 'css/binaryStyle.css');
 		document.getElementById('proLogo').setAttribute('src', 'images/binaryLogo.png');
-		console.log('hi');
+		$('#styleList').val('1');
 	}
 }
 
