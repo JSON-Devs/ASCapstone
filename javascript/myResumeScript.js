@@ -24,13 +24,24 @@ function toggle(num){
 }
 
 //Style changer
-function changeStyle(){
-	if ($("#styleList").val() === "Default") {
+function updateStyle(){
+	var ls = localStorage.getItem("userID");
+	var styleType = $("#styleList").val();
+	
+		$.getJSON( "php/php_queries.php", { action:"updateStyle", userID: ls, styleType: styleType});
+	
+	
+}
+function changeStyle(json){
+	console.log(json.Result[0].styleType);
+	if (json.Result[0].styleType === '0') {
 		document.getElementById('pageStyle').setAttribute('href', 'css/mainStyle.css');
 		document.getElementById('proLogo').setAttribute('src', 'images/logo.png');
-	}else if ($("#styleList").val() === "Binary") {
+	}
+	else if (json.Result[0].styleType === '1') {
 		document.getElementById('pageStyle').setAttribute('href', 'css/binaryStyle.css');
 		document.getElementById('proLogo').setAttribute('src', 'images/binaryLogo.png');
+		console.log('hi');
 	}
 }
 
@@ -76,6 +87,7 @@ function loadBasic(){
 	.done(function(json){
 		fillBasic(json);
 		fillBasic2(json);
+		changeStyle(json);
 		});
 }
 
@@ -627,7 +639,10 @@ $(document).ready(function(){
 	}
 
 	$("#styleChange").click(function(){
-		changeStyle();
+		updateStyle();
+		setTimeout(function () {
+				window.location.reload();	
+					}, 100);
 	});
 
 	$("#logout").click(function(){
