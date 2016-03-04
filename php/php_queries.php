@@ -42,6 +42,9 @@ if (isset($_GET['action']))
 	if (isset($_GET['info'])) {
         $info = $_GET['info'];
     }
+	if (isset($_GET['styleType'])) {
+        $styleType = $_GET['styleType'];
+    }
 	if (isset($_GET['link'])) {
         $link = $_GET['link'];
     }
@@ -146,7 +149,7 @@ if($action === "getLog"){
 }
 	//Insert the data from the initial landing page when using account creation
 	if($action === "insertLanding"){
-		$query = "INSERT INTO user (firstName, lastName, email, pw, isAdmin, isActive, isReported, isNew) VALUES (:firstName, :lastName, :email, :pw, :isAdmin, :isActive, :isReported, :isNew)";
+		$query = "INSERT INTO user (firstName, lastName, email, pw, isAdmin, isActive, isReported, isNew, styleType) VALUES (:firstName, :lastName, :email, :pw, :isAdmin, :isActive, :isReported, :isNew, :styleType)";
 		$statement = $db->prepare ($query);
 		$statement->bindValue(":firstName", $firstName);
 		$statement->bindValue(":lastName", $lastName);
@@ -156,8 +159,17 @@ if($action === "getLog"){
 		$statement->bindValue(":isActive", "0");
 		$statement->bindValue(":isReported", "0");
 		$statement->bindValue(":isNew", "1");
+			$statement->bindValue(":styleType", "0");
 		$success = $statement->execute();
 	}
+	if ($action === "updateStyle"){	
+		$query = "UPDATE user SET styleType = :styleType WHERE userID = :userID";
+		$statement = $db->prepare ($query);
+		$statement->bindValue (":userID", $userID);	
+		$statement->bindValue (":styleType", $styleType);		
+		$statement->execute();
+	
+}
 	//check username and password
 	if($action === "loginUser"){
 	$query = "SELECT userID FROM user WHERE email = :email AND BINARY pw = :pw";
