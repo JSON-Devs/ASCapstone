@@ -235,11 +235,13 @@ hr{
 #mePicture{
 	float:left;
 	margin-top:8px;
-	height:80px;
-	width:80px;
+	height:84px;
+	width:84px;
 	border:2px solid #34AB00;
 	background-color:black;
-	/*background image*/
+	background-image: url('');
+	background-size: 84px 84px;
+	background-repeat:no-repeat;
 }
 
 #meBasic{
@@ -250,6 +252,7 @@ hr{
 	width:auto;
 	border:solid #34AB00 2px;
 	background-color:black;
+	padding:2px;
 }
 
 #meName{
