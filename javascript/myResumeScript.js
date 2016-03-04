@@ -33,7 +33,7 @@ function updateStyle(){
 	
 }
 function changeStyle(json){
-	console.log(json.Result[0].styleType);
+	
 	if (json.Result[0].styleType === '0') {
 		document.getElementById('pageStyle').setAttribute('href', 'css/mainStyle.css');
 		document.getElementById('proLogo').setAttribute('src', 'images/logo.png');
@@ -52,6 +52,14 @@ function loadProfilePicture(json){
 	var imageTag = json.Result[0].pictureLink;
 	//var el = document.getElementById("mePicture").style.backgroundImage;
 		document.getElementById("mePicture").style.backgroundImage = "url("+imageTag+")";
+}
+function updatePicture(){
+	var ls = localStorage.getItem("userID");
+	var pictureLink = $('#txtPicture').val();
+	$.getJSON( "php/php_queries.php", { action:"updatePicture", userID: ls, pictureLink: pictureLink } )
+		setTimeout(function () {
+				 window.location.reload();
+					}, 100);
 }
 ///////////////////////
 //End Profile Picture//
@@ -595,7 +603,7 @@ function checkLink2(json, linkCode){
 function inactivateLink(linkID){
 	inactivateLink2(linkID);
 		setTimeout(function () {
-				//window.location.reload();	
+				window.location.reload();	
 					}, 100);
 }
 
@@ -603,6 +611,7 @@ function inactivateLink(linkID){
 function inactivateLink2(linkID){
 	console.log(linkID);
 	$.getJSON( "php/php_queries.php", { action:"deactivateLink", linkID: linkID});
+			
 }
 function countLink(json){
 	var timesViewed = json.Result[0].timesViewed;
@@ -713,11 +722,17 @@ $(document).ready(function(){
 		
 		});
 	$("#btnAddEmployer2").click(function(){
-		console.log('inclick');
+		
 		addSingleEmployer();
 			setTimeout(function () {
 				window.location.reload();	
 					}, 100);
+		
+	});
+	$("#btnEditPicture").click(function(){
+		
+		updatePicture();
+			
 		
 	});
 });

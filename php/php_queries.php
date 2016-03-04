@@ -105,7 +105,17 @@ if (isset($_GET['action']))
 	if (isset($_GET['timesViewed'])) {
         $timesViewed = $_GET['timesViewed'];
     }
+	if (isset($_GET['pictureLink'])) {
+        $pictureLink = $_GET['pictureLink'];
+    }
 //////Search users
+if ($action === "updatePicture"){
+	$query = "UPDATE user SET pictureLink = :pictureLink WHERE userID = :userID";
+	$statement = $db->prepare ($query);
+	$statement->bindValue (":userID", $userID);
+	$statement->bindValue(":pictureLink", $pictureLink);
+	$statement->execute();
+}
 if ($action === "searchLink")
 {
 	$query = "SELECT * FROM link WHERE link = :linkID";
