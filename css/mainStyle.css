@@ -285,12 +285,13 @@ hr{
 	margin:auto;
 	margin-top:10px;
 	margin-bottom:10px;
+	padding:10px;
 	padding-bottom:20px;
 	min-height:100px;
 	height:auto;
 	width:800px;
 	border:solid #363636 2px;
-	border-radius:10px;
+	border-radius:2px;
 	background-color:#e3e1e1;
 }
 
@@ -408,7 +409,7 @@ hr{
 #linkEdit{
 	text-align:center;
 	margin:auto;
-	width:49%;
+	width:60%;
 	height:auto;
 	margin-bottom:5px;
 	background-color:#e3e1e1;

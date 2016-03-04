@@ -109,6 +109,7 @@ header{
 hr{
 	width:95%;
 	border:solid black 1px;
+	background-color:#34AB00;
 }
 /*Landing page*/
 .RegNow{
@@ -273,12 +274,13 @@ hr{
 	margin:auto;
 	margin-top:10px;
 	margin-bottom:10px;
+	padding:10px;
 	padding-bottom:20px;
 	min-height:100px;
 	height:auto;
 	width:800px;
 	border:solid #34AB00 2px;
-	border-radius:10px;
+	border-radius:2px;
 	background-color:black;
 }
 
