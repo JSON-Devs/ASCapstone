@@ -546,11 +546,11 @@ function fillLinkDiv(json){
 			str += "<td>" + json.Result[i].timesViewed + "</td>";
 			str += "<td><input id='btnDeactivate_" + json.Result[i].linkID + "' type='button' value='De-Activate' onclick='inactivateLink(" + json.Result[i].linkID + ")'></td>";
 			str += "</tr><tr>";
-			str += "<td colspan='3'><p>http://ict.neit.edu/000484346/public_html/capstone/resume.html?" + json.Result[i].link + "</p></td></tr><tr><td colspan='3'>------------------------------------------------</td></tr>";
+			str += "<td colspan='3'><p>http://ict.neit.edu/000484346/public_html/capstone/resume.html?" + json.Result[i].link + "</p></td></tr>";
 		
 		}
 	str+="</table>"
-	$('#companiesLinks').html(str);
+	$('#linkView').html(str);
 }
 
 //Check for a valid link
@@ -587,7 +587,12 @@ function inactivateLink2(linkID){
 	console.log(linkID);
 	$.getJSON( "php/php_queries.php", { action:"deactivateLink", linkID: linkID});
 }
-
+function countLink(json){
+	var timesViewed = json.Result[0].timesViewed;
+	timesViewed++;
+	var ls = json.Result[0].linkID;
+	$.getJSON( "php/php_queries.php", { action:"linkViewCount", linkID: ls, timesViewed: timesViewed});
+}
 /////////////////////////////
 //End Custom Link Generator//
 /////////////////////////////
@@ -633,7 +638,9 @@ $(document).ready(function(){
 	});	
 	$(".btnGenerateLink").click(function(){
 		generateLink();
-			
+		setTimeout(function () {
+				window.location.reload();	
+					}, 100);	
 		
 	});
 	$("#btnEditVideo").click(function(){
