@@ -43,6 +43,11 @@ function changeStyle(json){
 		document.getElementById('proLogo').setAttribute('src', 'images/binaryLogo.png');
 		$('#styleList').val('1');
 	}
+	else if (json.Result[0].styleType === '2') {
+		document.getElementById('pageStyle').setAttribute('href', 'css/profStyle.css');
+		document.getElementById('proLogo').setAttribute('src', 'images/profLogo.png');
+		$('#styleList').val('2');
+	}
 }
 
 ///////////////////
