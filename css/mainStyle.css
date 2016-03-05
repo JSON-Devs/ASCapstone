@@ -222,7 +222,7 @@ hr{
 
 #headerCenter{
 	height:auto;
-	width:800px;
+	max-width:1000px;
 	margin:auto;
 }
 
