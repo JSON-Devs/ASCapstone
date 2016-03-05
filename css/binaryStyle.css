@@ -275,10 +275,9 @@ hr{
 	margin-bottom:10px;
 	padding:10px;
 	padding-bottom:20px;
-	min-height:100px;
+	width:auto;
 	height:auto;
-	width:800px;
-	border:solid #34AB00 2px;
+	max-width:1000px;
 	border-radius:2px;
 	background-color:black;
 }
