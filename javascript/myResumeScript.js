@@ -421,7 +421,23 @@ function fillEmployer(json, empId){
 	$(".txtEmpEndYear").val(endEmpYear);
 	var empLin = json.Result[0].empLink;
 	$("#txtEmpLink").val(empLin);
-	var resp = json.Result[0].responsibilities;
+	var resp = json.Result[0].responsibilities + "/";
+	
+		if(json.Result[0].responsibilities1 != null){
+			resp += json.Result[0].responsibilities1 + "/";	
+			
+				if(json.Result[0].responsibilities2 != null){
+					resp += json.Result[0].responsibilities2 + "/";
+					
+						if(json.Result[0].responsibilities3 != null){
+							resp += json.Result[0].responsibilities3 + "/";
+							
+								if(json.Result[0].responsibilities4 != null){
+									resp += json.Result[0].responsibilities4;
+								}
+						}
+				}
+		}
 	$("#txtResp").val(resp);
 	console.log(empId);
 	localStorage.setItem("empId", empId);	
@@ -441,11 +457,31 @@ function fillEmp(json){
 	var empInfo = '<h4>Work Experience</h4>';
 	for(i=0; i<json.Result.length; i++){
 				empInfo += '<a href="' + json.Result[i].empLink + '"><h5>' + json.Result[i].employerName + '</h5></a>' +
-				'<p>' + json.Result[i].position + '</p>' +
+				'<p>' + json.Result[i].position + '</p>'+
 				'<ul>' +
 					'<li>' + json.Result[i].responsibilities + '</li>' +
-				'</ul>' +
-				'<p>Start date: ' + json.Result[i].startDateMonth + ', ' + json.Result[i].startDateYear + '</p>' +
+				'</ul>';
+				if(json.Result[i].responsibilities1 != null){
+					empInfo += '<ul>' +
+					'<li>' + json.Result[i].responsibilities1 + '</li>' +
+				'</ul>';
+				}
+				if(json.Result[i].responsibilities2 != null){
+					empInfo += '<ul>' +
+					'<li>' + json.Result[i].responsibilities2 + '</li>' +
+				'</ul>';
+				}
+				if(json.Result[i].responsibilities3 != null){
+					empInfo += '<ul>' +
+					'<li>' + json.Result[i].responsibilities3 + '</li>' +
+				'</ul>';
+				}
+				if(json.Result[i].responsibilities4 != null){
+					empInfo += '<ul>' +
+					'<li>' + json.Result[i].responsibilities4 + '</li>' +
+				'</ul>';
+				}
+				empInfo += '<p>Start date: ' + json.Result[i].startDateMonth + ', ' + json.Result[i].startDateYear + '</p>' +
 				'<p>End date: ' + json.Result[i].endDateMonth + ', ' + json.Result[i].endDateYear + '</p>';
 		}
 	$("#meEmp").append(empInfo);
@@ -500,7 +536,14 @@ $("#txtEmpName").val("");
 function addSingleEmployer(){
 	var ls = localStorage.getItem("userID");
 	
-	$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: $('#txtResp').val() } );
+	var respSplit = $('#txtResp').val();
+	var maxResp = 5;   						//Max number of Responsibilities the database can hold
+	for(i = 0; i< maxResp; i++){
+		var responsibilities = "responsibilities" + i + "";
+		eval("responsibilities" + i + "= respSplit.split('/')[i]");
+	}
+	
+	$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4 } );
 		console.log('in Button');
 }
 
@@ -508,8 +551,14 @@ function addSingleEmployer(){
 function updateEmployer(){
 	console.log('function');
 	var empId = localStorage.getItem("empId");
+	var respSplit = $('#txtResp').val();
+	var maxResp = 5;   						//Max number of Responsibilities the database can hold
+	for(i = 0; i< maxResp; i++){
+		var responsibilities = "responsibilities" + i + "";
+		eval("responsibilities" + i + "= respSplit.split('/')[i]");
+	}
 	
-	$.getJSON( "php/php_queries.php", { action:"updateEmployment", empID: empId, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: $('#txtResp').val() } );
+	$.getJSON( "php/php_queries.php", { action:"updateEmployment", empID: empId, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4 } );
 	setTimeout(function () {
 				 window.location.reload();
 					}, 100);
