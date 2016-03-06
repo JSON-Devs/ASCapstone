@@ -72,6 +72,18 @@ if (isset($_GET['action']))
 	if (isset($_GET['responsibilities'])) {
         $responsibilities = $_GET['responsibilities'];
     }
+	if (isset($_GET['responsibilities1'])) {
+        $responsibilities1 = $_GET['responsibilities1'];
+    }
+	if (isset($_GET['responsibilities2'])) {
+        $responsibilities2 = $_GET['responsibilities2'];
+    }
+	if (isset($_GET['responsibilities3'])) {
+        $responsibilities3 = $_GET['responsibilities3'];
+    }
+	if (isset($_GET['responsibilities4'])) {
+        $responsibilities4 = $_GET['responsibilities4'];
+    }
 	if (isset($_GET['name'])) {
         $name = $_GET['name'];
     }
@@ -232,7 +244,7 @@ if ($action === "addEducation"){
 }
 //Add employers
 if ($action === "addEmployer"){	
-		$query = "INSERT INTO employer (userID, employerName, position, startDateMonth, startDateYear, endDateMonth, endDateYear, empLink, responsibilities) VALUES(:userID, :employerName, :position, :startMonth, :startYear, :endMonth, :endYear, :empLink, :responsibilities)";
+		$query = "INSERT INTO employer (userID, employerName, position, startDateMonth, startDateYear, endDateMonth, endDateYear, empLink, responsibilities, responsibilities1, responsibilities2, responsibilities3, responsibilities4) VALUES(:userID, :employerName, :position, :startMonth, :startYear, :endMonth, :endYear, :empLink, :responsibilities, :responsibilities1, :responsibilities2, :responsibilities3, :responsibilities4)";
 		$statement = $db->prepare ($query);
 		$statement->bindValue (":userID", $userID);	
 		$statement->bindValue (":employerName", $employerName);			
@@ -243,6 +255,10 @@ if ($action === "addEmployer"){
 		$statement->bindValue (":endYear", $endYear);		
 		$statement->bindValue (":empLink", $empLink);
 		$statement->bindValue (":responsibilities", $responsibilities);
+		$statement->bindValue (":responsibilities1", $responsibilities1);
+		$statement->bindValue (":responsibilities2", $responsibilities2);
+		$statement->bindValue (":responsibilities3", $responsibilities3);
+		$statement->bindValue (":responsibilities4", $responsibilities4);
 			
 		$statement->execute();
 }
@@ -418,7 +434,7 @@ if($action === "updateEducation"){
     $statement->execute();
 }
 if($action === "updateEmployment"){
-    $query = "UPDATE employer SET  employerName = :employerName, position = :position, startDateMonth = :startMonth, startDateYear = :startYear, endDateMonth = :endMonth, endDateYear = :endYear, empLink = :empLink, responsibilities = :responsibilities WHERE empID = :empID";
+    $query = "UPDATE employer SET  employerName = :employerName, position = :position, startDateMonth = :startMonth, startDateYear = :startYear, endDateMonth = :endMonth, endDateYear = :endYear, empLink = :empLink, responsibilities = :responsibilities, responsibilities1 = :responsibilities1, responsibilities2 = :responsibilities2, responsibilities3 = :responsibilities3, responsibilities4 = :responsibilities4 WHERE empID = :empID";
     $statement = $db->prepare ($query);
    
 	$statement->bindValue (":employerName", $employerName);			
@@ -429,7 +445,11 @@ if($action === "updateEmployment"){
 	$statement->bindValue (":endYear", $endYear);		
 	$statement->bindValue (":empLink", $empLink);
 	$statement->bindValue (":responsibilities", $responsibilities);
-	 $statement->bindValue (":empID", $empID);
+	$statement->bindValue (":responsibilities1", $responsibilities1);
+	$statement->bindValue (":responsibilities2", $responsibilities2);
+	$statement->bindValue (":responsibilities3", $responsibilities3);
+	$statement->bindValue (":responsibilities4", $responsibilities4);
+	$statement->bindValue (":empID", $empID);
     $statement->execute();
 }
 if($action === "addCover"){
