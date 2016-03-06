@@ -210,8 +210,18 @@ function listSchoolsSecondStage(json)
 ////////////////////////////////// employer page functions//////////////////////////////////////
 function addSingleEmployer()
 {
-		 var ls = localStorage.getItem("userID");
-	$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtStartMonth').val(), startYear: $('#txtStartYear').val(), endMonth: $('#txtEndMonth').val(), endYear: $('#txtEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: $('#txtResp').val() } );
+	var ls = localStorage.getItem("userID");
+	
+	var respSplit = $('#txtResp').val();
+	var maxResp = 5;   						//Max number of Responsibilities the database can hold
+	for(i = 0; i< maxResp; i++){
+		var responsibilities = "responsibilities" + i + "";
+		eval("responsibilities" + i + "= respSplit.split('/')[i]");
+	}
+	
+	$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtStartMonth').val(), startYear: $('#txtStartYear').val(), endMonth: $('#txtEndMonth').val(), endYear: $('#txtEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4 } );
+	
+	/*$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtStartMonth').val(), startYear: $('#txtStartYear').val(), endMonth: $('#txtEndMonth').val(), endYear: $('#txtEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: $('#txtResp').val() } );*/
 	
 }
 function listEmployers()
