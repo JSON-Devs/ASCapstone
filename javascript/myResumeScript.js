@@ -154,58 +154,65 @@ function loadVideo(){
 
 //Fill in Video
 function fillVideo(json){
-	var videoLin = 'https://youtu.be/' + json.Result[0].videoLink;
-	$("#txtLink").val(videoLin);
-	var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/' + json.Result[0].videoLink + '?rel=0" frameborder="0" allowfullscreen></iframe>'
-	$("#vidEmbed").append(vidFrame);
+	if(json.Result[0].videoLink != ""){
+		var videoLin = 'https://youtu.be/' + json.Result[0].videoLink;
+		$("#txtLink").val(videoLin);
+		var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/' + json.Result[0].videoLink + '?rel=0" frameborder="0" allowfullscreen></iframe>'
+		$("#vidEmbed").append(vidFrame);
+	}else{
+		var videoLin = 'https://www.youtube.com/watch?v=2QwDkGcvY5o';
+		$("#txtLink").val(videoLin);
+		var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/' + json.Result[0].videoLink + '?rel=0" frameborder="0" allowfullscreen></iframe>'
+		$("#vidEmbed").append(vidFrame);
+	}
 }
 
 //Update Video
 function updateVid(){
 	var updateLinkBefore = $("#txtLink").val();
-	if(updateLinkBefore.indexOf("https://youtu.be/") >= 0){
-		var updateLinkAfter = updateLinkBefore.slice(17,28);
+	if (updateLinkBefore == ""){		
+		sendVid(updateLinkBefore);
+	}else{
+		if(updateLinkBefore.indexOf("https://youtu.be/") >= 0){
+			var updateLinkAfter = updateLinkBefore.slice(17,28);
+				if(updateLinkAfter.length == 11){
+					console.log(updateLinkAfter);
+					sendVid(updateLinkAfter);
+				}
+				else{
+					alert("empty 1 link");
+				}
+			
+		}else if(updateLinkBefore.indexOf("http://youtu.be/") >= 0){
+			var updateLinkAfter = updateLinkBefore.slice(16,27);
 			if(updateLinkAfter.length == 11){
-				console.log(updateLinkAfter);
-				sendVid(updateLinkAfter);
-			}
-			else{
-				alert("empty 1 link");
-			}
-		
-	}
-	else if(updateLinkBefore.indexOf("http://youtu.be/") >= 0){
-		var updateLinkAfter = updateLinkBefore.slice(16,27);
-		if(updateLinkAfter.length == 11){
-				console.log(updateLinkAfter);
-				sendVid(updateLinkAfter);
-			}
-			else{
-				alert("empty2 link");
-			}
-	}
-	else if(updateLinkBefore.indexOf("https://www.youtube.com/watch?v=") >= 0){
-		var updateLinkAfter = updateLinkBefore.slice(32,43);
-		if(updateLinkAfter.length == 11){
-				console.log(updateLinkAfter);
-				sendVid(updateLinkAfter);
-			}
-			else{
-				alert("empty3 link");
-			}
-	}
-	else if(updateLinkBefore.indexOf("http://www.youtube.com/watch?v=") >= 0){
-		var updateLinkAfter = updateLinkBefore.slice(31,42);
-		if(updateLinkAfter.length == 11){
-				console.log(updateLinkAfter);
-				sendVid(updateLinkAfter);
-			}
-			else{
-				alert("empty 4link");
-			}
-	}
-	else{
-		alert("INVALID LINK!!")
+					console.log(updateLinkAfter);
+					sendVid(updateLinkAfter);
+				}
+				else{
+					alert("empty2 link");
+				}
+		}else if(updateLinkBefore.indexOf("https://www.youtube.com/watch?v=") >= 0){
+			var updateLinkAfter = updateLinkBefore.slice(32,43);
+			if(updateLinkAfter.length == 11){
+					console.log(updateLinkAfter);
+					sendVid(updateLinkAfter);
+				}
+				else{
+					alert("empty3 link");
+				}
+		}else if(updateLinkBefore.indexOf("http://www.youtube.com/watch?v=") >= 0){
+			var updateLinkAfter = updateLinkBefore.slice(31,42);
+			if(updateLinkAfter.length == 11){
+					console.log(updateLinkAfter);
+					sendVid(updateLinkAfter);
+				}
+				else{
+					alert("empty 4link");
+				}
+		}else{
+			alert("INVALID LINK!!")
+		}
 	}
 }
 
@@ -421,23 +428,35 @@ function fillEmployer(json, empId){
 	$(".txtEmpEndYear").val(endEmpYear);
 	var empLin = json.Result[0].empLink;
 	$("#txtEmpLink").val(empLin);
-	var resp = json.Result[0].responsibilities + "/";
+	var resp = json.Result[0].responsibilities;
 	
-		if(json.Result[0].responsibilities1 != null){
-			resp += json.Result[0].responsibilities1 + "/";	
-			
-				if(json.Result[0].responsibilities2 != null){
-					resp += json.Result[0].responsibilities2 + "/";
-					
-						if(json.Result[0].responsibilities3 != null){
-							resp += json.Result[0].responsibilities3 + "/";
-							
-								if(json.Result[0].responsibilities4 != null){
-									resp += json.Result[0].responsibilities4;
+	if(json.Result[0].responsibilities1 != null){
+		resp += "/" + json.Result[0].responsibilities1 ;			
+		if(json.Result[0].responsibilities2 != null){
+			resp +=  "/" + json.Result[0].responsibilities2 ;					
+			if(json.Result[0].responsibilities3 != null){
+				resp += "/" + json.Result[0].responsibilities3 ;							
+				if(json.Result[0].responsibilities4 != null){
+					resp += "/" + json.Result[0].responsibilities4;									
+					if(json.Result[0].responsibilities5 != null){
+						resp += "/" + json.Result[0].responsibilities5;
+						if(json.Result[0].responsibilities6 != null){
+							resp += "/" + json.Result[0].responsibilities6;
+							if(json.Result[0].responsibilities7 != null){
+								resp += "/" + json.Result[0].responsibilities7;
+								if(json.Result[0].responsibilities8 != null){
+									resp += "/" + json.Result[0].responsibilities8;
+									if(json.Result[0].responsibilities9 != null){
+										resp += "/" + json.Result[0].responsibilities9;
+									}
 								}
+							}
 						}
+					}
 				}
+			}
 		}
+	}
 	$("#txtResp").val(resp);
 	console.log(empId);
 	localStorage.setItem("empId", empId);	
@@ -688,7 +707,8 @@ function resetLocalStorage(){
 
 $(document).ready(function(){
 	
-	$('.number').autotab('filter', 'number');
+	$.autotab({ tabOnSelect: true });
+	$('.phoneNumber').autotab('filter', 'number');
 	$(".editWrap").draggable({ scroll: false, containment: "document" });
 	var ls = localStorage.getItem("userID");
 	if(ls == "" || ls == null){ 
