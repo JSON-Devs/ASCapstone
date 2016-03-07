@@ -786,7 +786,7 @@ $(document).ready(function(){
 	$("#btnEditPicture").click(function(){
 		
 		updatePicture();
-			
+			//test
 		
 	});
 });
