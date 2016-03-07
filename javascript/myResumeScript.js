@@ -162,7 +162,7 @@ function fillVideo(json){
 	}else{
 		var videoLin = 'https://www.youtube.com/watch?v=2QwDkGcvY5o';
 		$("#txtLink").val(videoLin);
-		var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/' + json.Result[0].videoLink + '?rel=0" frameborder="0" allowfullscreen></iframe>'
+		var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/2QwDkGcvY5o?rel=0" frameborder="0" allowfullscreen></iframe>'
 		$("#vidEmbed").append(vidFrame);
 	}
 }
@@ -556,7 +556,7 @@ function addSingleEmployer(){
 	var ls = localStorage.getItem("userID");
 	
 	var respSplit = $('#txtResp').val();
-	var maxResp = 5;   						//Max number of Responsibilities the database can hold
+	var maxResp = 10;   						//Max number of Responsibilities the database can hold
 	for(i = 0; i< maxResp; i++){
 		var responsibilities = "responsibilities" + i + "";
 		eval("responsibilities" + i + "= respSplit.split('/')[i]");

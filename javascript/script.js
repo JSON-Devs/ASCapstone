@@ -23,10 +23,11 @@ function setLocal()
 	
 }
 function setLocalStorage(json)
-{	//Jay will update!
+{	
 	  if(window.localStorage)
 	  {
 	  localStorage.setItem("userID", json.Result.userID );
+	  localStorage.setItem("userReg", '1' );
 			 var ls = localStorage.getItem("userID");
 			
 				 window.location = "basicInfo2.html";
@@ -70,7 +71,7 @@ function setLocalOldUser()
 	
 }
 function  setLocalStorageOldUser(json)
-{	//Jay will update!
+{	
 	  if(window.localStorage)
 	  {
 	  localStorage.setItem("userID", json.Result.userID );
@@ -296,7 +297,7 @@ function insertCover()
 	
 }
 function validateEmail(email) {
-    var re = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/;
+    var re = /\w\w+([-+.']\w\w+)*@\w\w+([-.]\w\w+)*\.\w\w+([-.]\w\w+)*/;
     var resul = re.test(email)
 	
 	return resul;
@@ -409,7 +410,7 @@ function validateEmployer()
 					}, 100);
 	}
 }
-$(document).ready(function(){
+$(document).ready(function(){	
 	$('#emptyLogin').hide();
 	$('#invalidLogin').hide();
 	$("#btnLogin").click(function()
@@ -425,6 +426,9 @@ $(document).ready(function(){
 		
 		
 	});
+/*auto tab functionality */
+$.autotab({ tabOnSelect: true });
+$('.phoneNumber').autotab('filter', 'number');
 /**********************************************/	
 	$("#btnRegister").click(function()
 	{
@@ -466,13 +470,19 @@ $(document).ready(function(){
 	});	
 	$("#btnFinish").click(function()
 	{
-	
+		 localStorage.setItem("userReg", '0' );
 		insertCover();
 			setTimeout(function () {
-				 	//window.location = "myresume.html";
+				 	window.location = "myresume.html";
 					}, 100);
 		
 	});
+	
+	$("#txtLoginPassword").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#btnLogin").click();
+    }
+});
 	
 	
 /************************************************/			
