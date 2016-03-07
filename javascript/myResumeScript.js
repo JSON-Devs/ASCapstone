@@ -688,6 +688,7 @@ function resetLocalStorage(){
 
 $(document).ready(function(){
 	
+	$('.number').autotab('filter', 'number');
 	$(".editWrap").draggable({ scroll: false, containment: "document" });
 	var ls = localStorage.getItem("userID");
 	if(ls == "" || ls == null){ 
