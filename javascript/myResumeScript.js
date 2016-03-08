@@ -500,6 +500,31 @@ function fillEmp(json){
 					'<li>' + json.Result[i].responsibilities4 + '</li>' +
 				'</ul>';
 				}
+				if(json.Result[i].responsibilities5 != null){
+					empInfo += '<ul>' +
+					'<li>' + json.Result[i].responsibilities5 + '</li>' +
+				'</ul>';
+				}
+				if(json.Result[i].responsibilities6 != null){
+					empInfo += '<ul>' +
+					'<li>' + json.Result[i].responsibilities6 + '</li>' +
+				'</ul>';
+				}
+				if(json.Result[i].responsibilities7 != null){
+					empInfo += '<ul>' +
+					'<li>' + json.Result[i].responsibilities7 + '</li>' +
+				'</ul>';
+				}
+				if(json.Result[i].responsibilities8 != null){
+					empInfo += '<ul>' +
+					'<li>' + json.Result[i].responsibilities8 + '</li>' +
+				'</ul>';
+				}
+				if(json.Result[i].responsibilities9 != null){
+					empInfo += '<ul>' +
+					'<li>' + json.Result[i].responsibilities9 + '</li>' +
+				'</ul>';
+				}
 				empInfo += '<p>Start date: ' + json.Result[i].startDateMonth + ', ' + json.Result[i].startDateYear + '</p>' +
 				'<p>End date: ' + json.Result[i].endDateMonth + ', ' + json.Result[i].endDateYear + '</p>';
 		}
@@ -557,12 +582,14 @@ function addSingleEmployer(){
 	
 	var respSplit = $('#txtResp').val();
 	var maxResp = 10;   						//Max number of Responsibilities the database can hold
-	for(i = 0; i< maxResp; i++){
+	for(i = 0; i < maxResp; i++){
 		var responsibilities = "responsibilities" + i + "";
+		
 		eval("responsibilities" + i + "= respSplit.split('/')[i]");
+		alert(responsibilities);
 	}
 	
-	$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4 } );
+	$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9 } );
 		console.log('in Button');
 }
 
@@ -571,13 +598,13 @@ function updateEmployer(){
 	console.log('function');
 	var empId = localStorage.getItem("empId");
 	var respSplit = $('#txtResp').val();
-	var maxResp = 5;   						//Max number of Responsibilities the database can hold
+	var maxResp = 10;   						//Max number of Responsibilities the database can hold
 	for(i = 0; i< maxResp; i++){
 		var responsibilities = "responsibilities" + i + "";
 		eval("responsibilities" + i + "= respSplit.split('/')[i]");
 	}
 	
-	$.getJSON( "php/php_queries.php", { action:"updateEmployment", empID: empId, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4 } );
+	$.getJSON( "php/php_queries.php", { action:"updateEmployment", empID: empId, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9  } );
 	setTimeout(function () {
 				 window.location.reload();
 					}, 100);
@@ -809,5 +836,11 @@ $(document).ready(function(){
 		updatePicture();
 			//test
 		
+	});
+	
+	$("#txtGPA").keyup(function(event){
+    if(event.keyCode == 13){
+        $("#btnAddSchool2").click();
+    }
 	});
 });
