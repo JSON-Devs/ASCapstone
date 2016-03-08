@@ -115,35 +115,60 @@ function fillInStates(json){
 }
 
 function pullDates(){
-		$.getJSON( "php/php_queries.php", { action:"getMonths" } )
+	pullMonths();
+	pullYears();
+}
+
+function pullMonths(){
+	
+	$.getJSON( "php/php_queries.php", { action:"getMonths" } )
 		.done(function( json ) {
-			//console.log("months1");
 			fillInMonths(json);
-		});
-		$.getJSON( "php/php_queries.php", { action:"getYears" } )
-		.done(function( json ) {
-            //console.log("years1");
-			fillInYears(json);
 		});
 }
 
 function fillInMonths(json){
-	/*fill in months drop down list*/
-        //console.log("months2");
-	for (x=0;x<json.Result.length; x++)
+	str = "";
+	
+	for (i=0;i<json.Result.length; i++)
 	{
-		//console.log(x);
+		str += "<option value='" + json.Result[i].monthVal + "'>" + json.Result[i].monthVal + "</option>";
 	}
+	
+	strEdStart = "<select id='txtEdStartMonth' name='month'>" + str + "</select>";
+	$('#txtEdStartM').append(strEdStart);
+	strEdEnd = "<select id='txtEdEndMonth' name='month'>" + str + "</select>";
+	$('#txtEdEndM').append(strEdEnd);
+	strEmpStart = "<select id='txtEmpStartMonth' name='month'>" + str + "</select>";
+	$('#txtEmpStartM').append(strEmpStart);
+	strEmpEnd = "<select id='txtEmpEndMonth' name='month'>" + str + "</select>";
+	$('#txtEmpEndM').append(strEmpEnd);
+}
+
+function pullYears(){
+	$.getJSON( "php/php_queries.php", { action:"getYears" } )
+		.done(function( json ) {
+			fillInYears(json);
+		});
 }
 
 function fillInYears(json){
-	/*fill in years drop down list*/
-        //console.log("years2");
-	for (y=0;y<json.Result.length; y++)
+	str = "";
+	for (i=0;i<json.Result.length; i++)
 	{
-		//console.log(y);
+		str += "<option value='" + json.Result[i].yearNum + "'>" + json.Result[i].yearNum + "</option>";
 	}
+	
+	strEdStart = "<select id='txtEdStartYear' name='year'>" + str + "</select>";
+	$('#txtEdStartY').append(strEdStart);
+	strEdEnd = "<select id='txtEdEndYear' name='year'>" + str + "</select>";
+	$('#txtEdEndY').append(strEdEnd);
+	strEmpStart = "<select id='txtEmpStartYear' name='year'>" + str + "</select>";
+	$('#txtEmpStartY').append(strEmpStart);
+	strEmpEnd = "<select id='txtEmpEndYear' name='year'>" + str + "</select>";
+	$('#txtEmpEndY').append(strEmpEnd);
 }
+
 function checkEmail()
 {
 	
