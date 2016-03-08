@@ -67,13 +67,6 @@ header{
 }
 
 /*Main Struct*/
-.wholePage{
-	min-height: 100%;
-height: auto !important;
-height: 100%;
-margin: 0 auto -300;
-	
-}
 
 .wrapper{
 	height:auto;
@@ -88,6 +81,38 @@ margin: 0 auto -300;
 	padding-bottom:20px;
 	/*box-shadow:5px 5px 2px #444;*/
 	font-family:aldo;
+}
+
+#txtEmpStartM{
+	float:left;
+}
+
+#txtEmpEndM{
+	float:left;
+}
+
+#txtEdStartM{
+	float:left;
+}
+
+#txtEdEndM{
+	float:left;
+}
+
+#txtEmpStartY{
+	float:right;
+}
+
+#txtEmpEndY{
+	float:right;
+}
+
+#txtEdStartY{
+	float:right;
+}
+
+#txtEdEndY{
+	float:right;
 }
 
 .alignTable{

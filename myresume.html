@@ -18,7 +18,7 @@
 
 </head>
 
-<body id="myResumeBody"> <!--ADD pullStatesAndDates() TO SCRIPT  onload="pullStatesAndDates()"  -->
+<body id="myResumeBody" onload="pullStatesAndDates()"> <!--ADD pullStatesAndDates() TO SCRIPT  onload="pullStatesAndDates()"  -->
 	<header>
 		<div id="headerCenter">
 			<div id="mePicture">
@@ -122,61 +122,7 @@
             <tr><td class="alignTable">Last Name:</td><td><input id="txtLastName" type="text"></td></tr>
             <tr><td class="alignTable">Email:</td><td><input id="txtEmail" type="text"></td></tr>
             <tr><td class="alignTable">City:</td><td><input id="txtCity" type="text"></td></tr>
-            <tr><td class="alignTable">State:</td><td>
-            	<select id="state" name="state">
-					<option value="AL">AL</option>
-					<option value="AK">AK</option>
-					<option value="AZ">AZ</option>
-					<option value="AR">AR</option>
-					<option value="CA">CA</option>
-					<option value="CO">CO</option>
-					<option value="CT">CT</option>
-					<option value="DE">DE</option>
-					<option value="DC">DC</option>
-					<option value="FL">FL</option>
-					<option value="GA">GA</option>
-					<option value="HI">HI</option>
-					<option value="ID">ID</option>
-					<option value="IL">IL</option>
-					<option value="IN">IN</option>
-					<option value="IA">IA</option>
-					<option value="KS">KS</option>
-					<option value="KY">KY</option>
-					<option value="LA">LA</option>
-					<option value="ME">ME</option>
-					<option value="MD">MD</option>
-					<option value="MA">MA</option>
-					<option value="MI">MI</option>
-					<option value="MN">MN</option>
-					<option value="MS">MS</option>
-					<option value="MO">MO</option>
-					<option value="MT">MT</option>
-					<option value="NE">NE</option>
-					<option value="NV">NV</option>
-					<option value="NH">NH</option>
-					<option value="NJ">NJ</option>
-					<option value="NM">NM</option>
-					<option value="NY">NY</option>
-					<option value="NC">NC</option>
-					<option value="ND">ND</option>
-					<option value="OH">OH</option>
-					<option value="OK">OK</option>
-					<option value="OR">OR</option>
-					<option value="PA">PA</option>
-					<option value="RI">RI</option>
-					<option value="SC">SC</option>
-					<option value="SD">SD</option>
-					<option value="TN">TN</option>
-					<option value="TX">TX</option>
-					<option value="UT">UT</option>
-					<option value="VT">VT</option>
-					<option value="VA">VA</option>
-					<option value="WA">WA</option>
-					<option value="WV">WV</option>
-					<option value="WI">WI</option>
-					<option value="WY">WY</option>
-				</select>
-            </td></tr>
+            <tr><td class="alignTable">State:</td><td><div id="showStates"></div></td></tr>
             <tr><td class="alignTable">Zip Code:</td><td><input id="txtZipCode" maxlength="5" type="text"></td></tr>
             <tr><td class="alignTable">Phone Number:</td><td>&nbsp;(<input class="phoneSmall phoneNumber" id="txtPhoneNumber1" maxlength="3" type="text">) <input class="phoneSmall phoneNumber" id="txtPhoneNumber2" maxlength="3" type="text"> - <input class="phoneBig phoneNumber" id="txtPhoneNumber3" maxlength="4" type="text"></td></tr>
         </table>
@@ -218,54 +164,12 @@
 					<tr><td class="alignTable">School Name:</td><td><input id="txtSchoolName" type="text"></td></tr>
 					<tr><td class="alignTable">Degree Program:</td><td><input id="txtDegree" type="text"></td></tr>
 					<tr><td class="alignTable">Start Date:</td><td>
-						<select id="txtEdStartMonth" name="month">
-							<option value="January">January</option>
-							<option value="February">February</option>
-							<option value="March">March</option>
-							<option value="April">April</option>
-							<option value="May">May</option>
-							<option value="June">June</option>
-							<option value="July">July</option>
-							<option value="August">August</option>
-							<option value="September">September</option>
-							<option value="October">October</option>
-							<option value="November">November</option>
-							<option value="December">December</option>
-						</select>
-						<select id="txtEdStartYear" name="year">
-							<option value="2010">2010</option>
-							<option value="2011">2011</option>
-							<option value="2012">2012</option>
-							<option value="2013">2013</option>
-							<option value="2014">2014</option>
-							<option value="2015">2015</option>
-							<option value="2016">2016</option>
-						</select>
+						<div id="txtEdStartM"></div>
+						<div id="txtEdStartY"></div>
 					</td></tr>
 					<tr><td class="alignTable">End Date:</td><td>
-						<select id="txtEdEndMonth" name="month">
-							<option value="January">January</option>
-							<option value="February">February</option>
-							<option value="March">March</option>
-							<option value="April">April</option>
-							<option value="May">May</option>
-							<option value="June">June</option>
-							<option value="July">July</option>
-							<option value="August">August</option>
-							<option value="September">September</option>
-							<option value="October">October</option>
-							<option value="November">November</option>
-							<option value="December">December</option>
-						</select>
-						<select id="txtEdEndYear" name="year">
-							<option value="2010">2010</option>
-							<option value="2011">2011</option>
-							<option value="2012">2012</option>
-							<option value="2013">2013</option>
-							<option value="2014">2014</option>
-							<option value="2015">2015</option>
-							<option value="2016">2016</option>
-						</select>
+						<div id="txtEdEndM"></div>
+						<div id="txtEdEndY"></div>
 					</td></tr>
 					<tr><td class="alignTable">GPA:</td><td><input id="txtGPA" maxlength="4" type="text"></td></tr>
 				</table>
@@ -291,54 +195,12 @@
             		<tr><td class="alignTable">Employer Name:</td><td><input id="txtEmpName" type="text"></td></tr>
             		<tr><td class="alignTable">Position:</td><td><input id="txtPosition" type="text"></td></tr>
             		<tr><td class="alignTable">Start Date:</td><td>
-  						<select id="txtEmpStartMonth" name="month">
-    						<option value="January">January</option>
-							<option value="February">February</option>
-							<option value="March">March</option>
-							<option value="April">April</option>
-							<option value="May">May</option>
-							<option value="June">June</option>
-							<option value="July">July</option>
-							<option value="August">August</option>
-							<option value="September">September</option>
-							<option value="October">October</option>
-							<option value="November">November</option>
-							<option value="December">December</option>
-  						</select>
-  						<select id="txtEmpStartYear" name="year">
-    						<option value="2010">2010</option>
-    						<option value="2011">2011</option>
-    						<option value="2012">2012</option>
-    						<option value="2013">2013</option>
-    						<option value="2014">2014</option>
-    						<option value="2015">2015</option>
-    						<option value="2016">2016</option>
-  						</select>
+  						<div id="txtEmpStartM"></div>
+  						<div id="txtEmpStartY"></div>
             		</td></tr>
             		<tr><td class="alignTable">End Date:</td><td>
-  						<select id="txtEmpEndMonth" name="month">
-    						<option value="January">January</option>
-							<option value="February">February</option>
-							<option value="March">March</option>
-							<option value="April">April</option>
-							<option value="May">May</option>
-							<option value="June">June</option>
-							<option value="July">July</option>
-							<option value="August">August</option>
-							<option value="September">September</option>
-							<option value="October">October</option>
-							<option value="November">November</option>
-							<option value="December">December</option>
-  						</select>
-  						<select id="txtEmpEndYear" name="year">
-    						<option value="2010">2010</option>
-    						<option value="2011">2011</option>
-    						<option value="2012">2012</option>
-    						<option value="2013">2013</option>
-    						<option value="2014">2014</option>
-    						<option value="2015">2015</option>
-    						<option value="2016">2016</option>
-  						</select>
+  						<div id="txtEmpEndM"></div>
+  						<div id="txtEmpEndY"></div>
             		</td></tr>
             		<tr><td class="alignTable">Employer Link:</td><td><input id="txtEmpLink" type="text"></td></tr>
             		<tr><td colspan="2" class="alignTable">Please use ( / ) at the end of each line.</td></tr>

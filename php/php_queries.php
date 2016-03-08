@@ -323,21 +323,21 @@ if($action === "getStates"){
 }
 	//get months
 if($action === "getMonths"){
-	$query = "SELECT * FROM month WHERE 0=0";
+	$query = "SELECT monthVal FROM month";
 		
 		$statement = $db->prepare ($query);	
 		$success = $statement->execute();
-		$rows = $statement->fetch();
+		$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
 		echo json_encode(array('Result' => $rows));
 	
 }
 	//get years
 if($action === "getYears"){
-	$query = "SELECT * FROM year WHERE 0=0";
+	$query = "SELECT yearNum FROM year";
 		
 		$statement = $db->prepare ($query);	
 		$success = $statement->execute();
-		$rows = $statement->fetch();
+		$rows = $statement->fetchAll(PDO::FETCH_ASSOC);
 		echo json_encode(array('Result' => $rows));
 	
 }

@@ -83,6 +83,38 @@ margin: 0 auto -300;
 	font-family:aldo;
 }
 
+#txtEmpStartM{
+	float:left;
+}
+
+#txtEmpEndM{
+	float:left;
+}
+
+#txtEdStartM{
+	float:left;
+}
+
+#txtEdEndM{
+	float:left;
+}
+
+#txtEmpStartY{
+	float:right;
+}
+
+#txtEmpEndY{
+	float:right;
+}
+
+#txtEdStartY{
+	float:right;
+}
+
+#txtEdEndY{
+	float:right;
+}
+
 .alignTable{
 	text-align:right;
 }

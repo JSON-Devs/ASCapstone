@@ -1,6 +1,82 @@
 /*MyResumeScript page is the editable page where the account holder can make changes to the page*/
 
-//function pullStatesAndDates(){}
+function pullStatesAndDates(){
+	pullStates();
+	pullMonths();
+	pullYears();
+}
+
+function pullStates(){
+	
+	$.getJSON( "php/php_queries.php", { action:"getStates" } )
+		.done(function( json ) {
+			fillInStates(json);
+		});
+}
+
+function fillInStates(json){
+	str = "";
+	
+	str += "<select id='state' name='state'>";
+	
+	for (i=0;i<json.Result.length; i++)
+	{
+		str += "<option value='" + json.Result[i].stateAbbr + "'>" + json.Result[i].stateAbbr + "</option>";
+	}
+	str += "</select>";
+	
+	$('#showStates').append(str);
+}
+
+function pullMonths(){
+	
+	$.getJSON( "php/php_queries.php", { action:"getMonths" } )
+		.done(function( json ) {
+			fillInMonths(json);
+		});
+}
+
+function fillInMonths(json){
+	str = "";
+	
+	for (i=0;i<json.Result.length; i++)
+	{
+		str += "<option value='" + json.Result[i].monthVal + "'>" + json.Result[i].monthVal + "</option>";
+	}
+	
+	strEdStart = "<select id='txtEdStartMonth' name='month'>" + str + "</select>";
+	$('#txtEdStartM').append(strEdStart);
+	strEdEnd = "<select id='txtEdEndMonth' name='month'>" + str + "</select>";
+	$('#txtEdEndM').append(strEdEnd);
+	strEmpStart = "<select id='txtEmpStartMonth' name='month'>" + str + "</select>";
+	$('#txtEmpStartM').append(strEmpStart);
+	strEmpEnd = "<select id='txtEmpEndMonth' name='month'>" + str + "</select>";
+	$('#txtEmpEndM').append(strEmpEnd);
+}
+
+function pullYears(){
+	$.getJSON( "php/php_queries.php", { action:"getYears" } )
+		.done(function( json ) {
+			fillInYears(json);
+		});
+}
+
+function fillInYears(json){
+	str = "";
+	for (i=0;i<json.Result.length; i++)
+	{
+		str += "<option value='" + json.Result[i].yearNum + "'>" + json.Result[i].yearNum + "</option>";
+	}
+	
+	strEdStart = "<select id='txtEdStartYear' name='year'>" + str + "</select>";
+	$('#txtEdStartY').append(strEdStart);
+	strEdEnd = "<select id='txtEdEndYear' name='year'>" + str + "</select>";
+	$('#txtEdEndY').append(strEdEnd);
+	strEmpStart = "<select id='txtEmpStartYear' name='year'>" + str + "</select>";
+	$('#txtEmpStartY').append(strEmpStart);
+	strEmpEnd = "<select id='txtEmpEndYear' name='year'>" + str + "</select>";
+	$('#txtEmpEndY').append(strEmpEnd);
+}
 
 //Editor div toggler
 function toggle(num){
@@ -364,9 +440,9 @@ function eduClearBoxes(){
 	$("#txtSchoolName").val("");
 	$("#txtDegree").val("");
 	$("#txtEdStartMonth").val("January");
-	$("#txtEdStartYear").val("2010");
+	$("#txtEdStartYear").val("1960");
 	$("#txtEdEndMonth").val("January");
-	$("#txtEdEndYear").val("2010");
+	$("#txtEdEndYear").val("1960");
 	$("#txtGPA").val("");
 	$("#btnEditSchool").hide();
 	$("#btnAddSchool2").show();
@@ -419,13 +495,13 @@ function fillEmployer(json, empId){
 	var position = json.Result[0].position;
 	$("#txtPosition").val(position);
 	var startEmpMonth = json.Result[0].startDateMonth;
-	$(".txtEmpStartMonth").val(startEmpMonth);
+	$("#txtEmpStartMonth").val(startEmpMonth);
 	var startEmpYear = json.Result[0].startDateYear;
-	$(".txtEmpStartYear").val(startEmpYear);
+	$("#txtEmpStartYear").val(startEmpYear);
 	var endEmpMonth = json.Result[0].endDateMonth;
-	$(".txtEmpEndMonth").val(endEmpMonth);
+	$("#txtEmpEndMonth").val(endEmpMonth);
 	var endEmpYear = json.Result[0].endDateYear;
-	$(".txtEmpEndYear").val(endEmpYear);
+	$("#txtEmpEndYear").val(endEmpYear);
 	var empLin = json.Result[0].empLink;
 	$("#txtEmpLink").val(empLin);
 	var resp = json.Result[0].responsibilities;
@@ -560,17 +636,11 @@ function clearEmpBoxes(){
 $("#txtEmpName").val("");
 	
 	$("#txtPosition").val("");
-	
 	$(".txtEmpStartMonth").val("January");
-	
-	$(".txtEmpStartYear").val("2010");
-	
+	$(".txtEmpStartYear").val("1960");
 	$(".txtEmpEndMonth").val("January");
-
-	$(".txtEmpEndYear").val("2010");
-
+	$(".txtEmpEndYear").val("1960");
 	$("#txtEmpLink").val("");
-
 	$("#txtResp").val("");
 	$("#btnEditEmployer").hide();
 	$("#btnAddEmployer2").show();
@@ -744,14 +814,17 @@ $(document).ready(function(){
 	}
 		
 	else{
-		loadCover();
-		loadVideo();
-		loadBasic();
-		loadEmp();
-		loadEdu();
-		listEmployers();
-		listSchools();
-		loadLink();
+		setTimeout(function () {
+			loadCover();
+			loadVideo();
+			loadBasic();
+			loadEmp();
+			loadEdu();
+			listEmployers();
+			listSchools();
+			loadLink();
+		}, 200);
+	
 	}
 
 	$("#styleChange").click(function(){
