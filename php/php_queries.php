@@ -84,6 +84,21 @@ if (isset($_GET['action']))
 	if (isset($_GET['responsibilities4'])) {
         $responsibilities4 = $_GET['responsibilities4'];
     }
+	if (isset($_GET['responsibilities5'])) {
+        $responsibilities5 = $_GET['responsibilities5'];
+    }
+	if (isset($_GET['responsibilities6'])) {
+        $responsibilities6 = $_GET['responsibilities6'];
+    }
+	if (isset($_GET['responsibilities7'])) {
+        $responsibilities7 = $_GET['responsibilities7'];
+    }
+	if (isset($_GET['responsibilities8'])) {
+        $responsibilities8 = $_GET['responsibilities8'];
+    }
+	if (isset($_GET['responsibilities9'])) {
+        $responsibilities9 = $_GET['responsibilities9'];
+    }
 	if (isset($_GET['name'])) {
         $name = $_GET['name'];
     }
@@ -244,7 +259,7 @@ if ($action === "addEducation"){
 }
 //Add employers
 if ($action === "addEmployer"){	
-		$query = "INSERT INTO employer (userID, employerName, position, startDateMonth, startDateYear, endDateMonth, endDateYear, empLink, responsibilities, responsibilities1, responsibilities2, responsibilities3, responsibilities4) VALUES(:userID, :employerName, :position, :startMonth, :startYear, :endMonth, :endYear, :empLink, :responsibilities, :responsibilities1, :responsibilities2, :responsibilities3, :responsibilities4)";
+		$query = "INSERT INTO employer (userID, employerName, position, startDateMonth, startDateYear, endDateMonth, endDateYear, empLink, responsibilities, responsibilities1, responsibilities2, responsibilities3, responsibilities4) VALUES(:userID, :employerName, :position, :startMonth, :startYear, :endMonth, :endYear, :empLink, :responsibilities, :responsibilities1, :responsibilities2, :responsibilities3, :responsibilities4, responsibilities5 = :responsibilities5, responsibilities6 = :responsibilities6, responsibilities7 = :responsibilities7, responsibilities8 = :responsibilities8, responsibilities9 = :responsibilities9)";
 		$statement = $db->prepare ($query);
 		$statement->bindValue (":userID", $userID);	
 		$statement->bindValue (":employerName", $employerName);			
@@ -259,6 +274,11 @@ if ($action === "addEmployer"){
 		$statement->bindValue (":responsibilities2", $responsibilities2);
 		$statement->bindValue (":responsibilities3", $responsibilities3);
 		$statement->bindValue (":responsibilities4", $responsibilities4);
+		$statement->bindValue (":responsibilities5", $responsibilities5);
+		$statement->bindValue (":responsibilities6", $responsibilities6);
+		$statement->bindValue (":responsibilities7", $responsibilities7);
+		$statement->bindValue (":responsibilities8", $responsibilities8);
+		$statement->bindValue (":responsibilities9", $responsibilities9);
 			
 		$statement->execute();
 }
@@ -434,7 +454,7 @@ if($action === "updateEducation"){
     $statement->execute();
 }
 if($action === "updateEmployment"){
-    $query = "UPDATE employer SET  employerName = :employerName, position = :position, startDateMonth = :startMonth, startDateYear = :startYear, endDateMonth = :endMonth, endDateYear = :endYear, empLink = :empLink, responsibilities = :responsibilities, responsibilities1 = :responsibilities1, responsibilities2 = :responsibilities2, responsibilities3 = :responsibilities3, responsibilities4 = :responsibilities4 WHERE empID = :empID";
+    $query = "UPDATE employer SET  employerName = :employerName, position = :position, startDateMonth = :startMonth, startDateYear = :startYear, endDateMonth = :endMonth, endDateYear = :endYear, empLink = :empLink, responsibilities = :responsibilities, responsibilities1 = :responsibilities1, responsibilities2 = :responsibilities2, responsibilities3 = :responsibilities3, responsibilities4 = :responsibilities4, responsibilities5 = :responsibilities5, responsibilities6 = :responsibilities6, responsibilities7 = :responsibilities7, responsibilities8 = :responsibilities8, responsibilities9 = :responsibilities9 WHERE empID = :empID";
     $statement = $db->prepare ($query);
    
 	$statement->bindValue (":employerName", $employerName);			
@@ -449,6 +469,11 @@ if($action === "updateEmployment"){
 	$statement->bindValue (":responsibilities2", $responsibilities2);
 	$statement->bindValue (":responsibilities3", $responsibilities3);
 	$statement->bindValue (":responsibilities4", $responsibilities4);
+	$statement->bindValue (":responsibilities5", $responsibilities5);
+	$statement->bindValue (":responsibilities6", $responsibilities6);
+	$statement->bindValue (":responsibilities7", $responsibilities7);
+	$statement->bindValue (":responsibilities8", $responsibilities8);
+	$statement->bindValue (":responsibilities9", $responsibilities9);
 	$statement->bindValue (":empID", $empID);
     $statement->execute();
 }
