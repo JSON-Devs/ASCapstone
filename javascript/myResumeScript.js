@@ -734,8 +734,9 @@ function loadLink(){
 
 //Fill in links
 function fillLinkDiv(json){
-	var str = "";
 	
+	if(json.Result[0] != null){
+		var str = "";
 	str += "<table><tr><td> Company Name</td><td> Times Viewed</td></tr>";
 		for (i=0; i<json.Result.length; i++) {
 			str += "<tr>";
@@ -748,6 +749,7 @@ function fillLinkDiv(json){
 		}
 	str+="</table>"
 	$('#linkView').html(str);
+	}
 }
 
 //Check for a valid link
