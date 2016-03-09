@@ -390,12 +390,14 @@ hr{
 
 #meEdu h5{
 	margin-top:5px;
+	margin-left:20px;
 	margin-bottom:2px;
 	font-size:14px;
 }
 
 #meEdu p{
 	margin-top:5px;
+	margin-left:30px;
 	margin-bottom:2px;
 }
 
@@ -417,6 +419,7 @@ hr{
 
 #meEmp h5{
 	margin-top:8px;
+	margin-left:20px;
 	margin-bottom:2px;
 	font-size:14px;
 }
@@ -439,6 +442,7 @@ hr{
 
 #meEmp ul{
 	margin-top:2px;
+	margin-left:10px;
 }
 
 #meEmp p{

@@ -422,23 +422,24 @@ hr{
 }
 
 #meEmp a:link{
-	color:#000;
+	color:#34AB00;
 }
 
 #meEmp a:visited{
-	color:#535454;
+	color:#34AB00;
 }
 
 #meEmp a:hover{
-	color:#000;
+	color:#34AB00;
 }
 
 #meEmp a:active{
-	color:#000;
+	color:#34AB00;
 }
 
 #meEmp ul{
 	margin-top:2px;
+	margin-left:10px;
 }
 
 #meEmp p{
