@@ -214,14 +214,30 @@ hr{
     border-radius: 50%;
 }
 
-#styleList{
-	margin-left:10px;
-}
-
 #logout:hover{
 	background-color: #363636;
     color: white;
     border-radius: 50%;
+}
+
+#changePassword{
+	float:right;
+	margin-right: 50px;
+	margin-top: 8px;
+	background-color: white;
+    color: black;
+    border: 2px solid #363636;
+    border-radius: 50%;
+}
+
+#changePassword:hover{
+	background-color: #363636;
+    color: white;
+    border-radius: 50%;
+}
+
+#styleList{
+	margin-left:10px;
 }
 
 #styleList{
@@ -338,6 +354,7 @@ hr{
 #coverLetterText{
 	margin-top:8px;
 	margin-left:8px;
+	min-height:300px;
 }
 
 #meVideo{
