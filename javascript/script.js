@@ -79,9 +79,53 @@ function setLocalStorage(json)
 	  }
 	
 }
+//Change password//
+//div named editPassword//
+function testPassword1(){
+		 var ls = localStorage.getItem("userID");
+	$.getJSON( "php/php_queries.php", { action: "fillUser", userID: ls} )
+		 .done(function( json ) {
+	 testPassword2(json);
+	});
+	
+}
+function testPassword2(json){
+	var oldPass = json.Result[0].pw
+	var txtOldPass = $('#txtOldPassword').val();
+	if(oldPass == txtOldPass)
+	{
+		testPassword3();
+	}
+	else
+	{
+		
+		$('#passwordFeedback').html('Password does not match current password!');
+	}
+}
+function testPassword3(){
+	var newPass1 = $('#txtNewPassword1').val();
+	var newPass2 = $('#txtNewPassword2').val();
+	if(newPass1 === newPass2)
+	{
+		setChangedPassword();
+			setTimeout(function () {
+				 	$('#passwordFeedback').html('Your password has been changed! Please hit cancle to exit change password screen.');
+					}, 100);
+	}
+	else
+	{
+		$('#passwordFeedback').html('New passwords do not match each other!');
+	}
+}
+function setChangedPassword(){
+	var newPass = $('#txtNewPassword1').val();
+	var ls = localStorage.getItem("userID");
+		$.getJSON( "php/php_queries.php", { action: "updatePassword", userID: ls, pw: newPass} );
+	
+}
+
 //////login//////
-function loginTest()
-{            
+function loginTest(){            
 	$.getJSON( "php/php_queries.php", { action: "loginUser", email: $('#txtLoginUsername').val(), pw:$('#txtLoginPassword').val()} )
 		 .done(function( json ) {
 	  finalUserTest(json);
@@ -509,7 +553,14 @@ $('.phoneNumber').autotab('filter', 'number');
 		//window.location = "basicInfo2.html";
 		
 	});	
+		$("#btnChangePassword").click(function()
+	{
 	
+		testPassword1();
+		
+				
+		
+	});
 	$("#btnNext-Edu").click(function()
 	{
 		/* PHP insert basic info */
