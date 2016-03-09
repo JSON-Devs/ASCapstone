@@ -238,9 +238,9 @@ function fillVideo(json){
 		var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/' + json.Result[0].videoLink + '?rel=0" frameborder="0" allowfullscreen></iframe>'
 		$("#vidEmbed").append(vidFrame);
 	}else{
-		var videoLin = 'https://www.youtube.com/watch?v=2QwDkGcvY5o';
+		var videoLin = 'https://youtu.be/S5RDXlRXh8c';
 		$("#txtLink").val(videoLin);
-		var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/2QwDkGcvY5o?rel=0" frameborder="0" allowfullscreen></iframe>'
+		var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/S5RDXlRXh8c?rel=0" frameborder="0" allowfullscreen></iframe>'
 		$("#vidEmbed").append(vidFrame);
 	}
 }
