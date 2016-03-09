@@ -369,27 +369,27 @@ function landingPageValidate()
 	var email = $('#txtEmail').val();
 	if(firstName.length == 0 || firstName == null )
 	{
-		feedback += "Error: Please Enter First Name";
+		feedback += "Error: Please Enter First Name \n ";
 	}
 	if(lastName.length == 0 || firstName == null)
 	{
-		feedback += "Error: Please Enter Last Name";
+		feedback += "Error: Please Enter Last Name \n";
 	}
 	if(email.length == 0 || email == null)
 	{
-		feedback += "Error: Please Enter Email";
+		feedback += "Error: Please Enter Email \n";
 	}
 	else
 	{
 		var resul = validateEmail(email);
 		if(resul == false)
 		{
-			feedback += "Error: Please enter Valid Email"
+			feedback += "Error: Please enter Valid Email \n"
 		}
 	}
 	if(pw.length == 0 || pw == null)
 	{
-		feedback += "Error: Please Enter Password";
+		feedback += "Error: Please Enter Password \n";
 	}
 	if( feedback.includes('Error:'))
 	{
@@ -428,18 +428,18 @@ function secondPageValidate()
 	var feedback = "";
 	if (citie.length == 0 || citie.length == null)
 	{
-		feedback += "Error: Please Enter City";
+		feedback += "Error: Please Enter City \n";
 	}
 	if(zip.length == 0 || zip == null)
 	{
-		feedback += "Error: Please Enter Zip Code";
+		feedback += "Error: Please Enter Zip Code \n";
 	}
 	else
 	{
 		 var resul = validateZip(zip);
 		if(resul == false)
 		{
-			feedback += "Error: Please Enter Valid Zip Code"
+			feedback += "Error: Please Enter Valid Zip Code \n"
 		}
 	}
 	if(feedback.includes('Error:'))
@@ -463,21 +463,21 @@ function validateGPA()
 	var degree = $('#txtDegree').val();
 	if(schoolName.length ==0 || schoolName == null)
 	{
-		feedback += "Error: Please Enter School Name"
+		feedback += "Error: Please Enter School Name \n"
 	}
 	if(degree.length ==0 || degree == null)
 	{
-		feedback += "Error: Please Enter Degree Program"
+		feedback += "Error: Please Enter Degree Program \n"
 	}
 	if(gpa.length ==0 || gpa == null)
 	{
-		feedback += "Error: Please Enter Valid GPA"
+		feedback += "Error: Please Enter Valid GPA \n"
 	}
 	else
 	{
 			if(gpa < 0 || gpa >4)
 			{
-				feedback += "Error: Please Enter Valid GPA"
+				feedback += "Error: Please Enter Valid GPA \n"
 			}
 	}
 	if(feedback.includes('Error:'))
@@ -500,15 +500,15 @@ function validateEmployer()
 	var empRes = $('#txtResp').val();
 	if(empName.length ==0 || empName == null)
 	{
-		feedback += "Error: Please Enter Company Name";
+		feedback += "Error: Please Enter Company Name  \n";
 	}
 	if(empPos.length ==0 || empPos == null)
 	{
-		feedback += "Error: Please Enter Position";
+		feedback += "Error: Please Enter Position \n";
 	}
 	if(empRes.length ==0 || empRes == null)
 	{
-		feedback += "Error: Please Enter Responsibilities";
+		feedback += "Error: Please Enter Responsibilities \n";
 	}
 	if(feedback.includes('Error:'))
 	{
