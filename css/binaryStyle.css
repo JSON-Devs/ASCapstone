@@ -452,6 +452,14 @@ hr{
 	background-color:black;
 }
 
+#linkView{
+	margin:auto;
+}
+
+#linkView table{
+	margin:auto;
+}
+
 #proLogo{
 	margin-top:10px;
 }
