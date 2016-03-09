@@ -39,7 +39,7 @@
 			<input type="button" id="logout" value="Log Out"/>
 			<br />
 			<br/>
-			<input type="button" id="changePassword" value="Change Password" />
+			<input type="button" id="changePassword" value="Change Password" onclick="toggle(8)" />
 			<br/>
 			<select id="styleList">
 				<option value="0">Default</option>
@@ -237,6 +237,19 @@
 		<div class="push"></div>
 	</div>
 <!-- End Link Generator -->
+
+	<div id="editPassword" class="wrapper editWrap">
+    	<h2 class="RegNow">Change Password</h2>
+    	<table class="infoInputs">
+		<br/>
+    		<center><input id="txtOldPassword" type="text"></center><br/>
+    		<center><input id="txtNewPassword1" type="text"></center><br/>
+    		<center><input id="txtNewPassword2" type="text"></center><br/>
+    		<center><input id="btnChangePassword" type="button" value="Change"></center><br/>
+    		<center><input class="btnCancel" type="button" value="Cancel" onclick="toggle(8)"></center>
+    	</table>
+    </div>
+<!-- End Change Password -->
 	
     <footer id="myResumeFooter">
 	<img id="proLogo" src="images/logo.png"></img> <br />

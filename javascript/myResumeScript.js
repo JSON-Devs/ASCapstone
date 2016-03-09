@@ -96,6 +96,8 @@ function toggle(num){
 		$("#editEmp").toggle();
 	}else if(num == 7){
 		$("#linkGen").toggle();
+	}else if(num == 8){
+		$("#editPassword").toggle();
 	}
 }
 
