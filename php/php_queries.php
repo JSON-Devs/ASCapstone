@@ -259,7 +259,7 @@ if ($action === "addEducation"){
 }
 //Add employers
 if ($action === "addEmployer"){	
-		$query = "INSERT INTO employer (userID, employerName, position, startDateMonth, startDateYear, endDateMonth, endDateYear, empLink, responsibilities, responsibilities1, responsibilities2, responsibilities3, responsibilities4) VALUES(:userID, :employerName, :position, :startMonth, :startYear, :endMonth, :endYear, :empLink, :responsibilities, :responsibilities1, :responsibilities2, :responsibilities3, :responsibilities4, responsibilities5 = :responsibilities5, responsibilities6 = :responsibilities6, responsibilities7 = :responsibilities7, responsibilities8 = :responsibilities8, responsibilities9 = :responsibilities9)";
+		$query = "INSERT INTO employer (userID, employerName, position, startDateMonth, startDateYear, endDateMonth, endDateYear, empLink, responsibilities, responsibilities1, responsibilities2, responsibilities3, responsibilities4, responsibilities5, responsibilities6, responsibilities7, responsibilities8, responsibilities9) VALUES(:userID, :employerName, :position, :startMonth, :startYear, :endMonth, :endYear, :empLink, :responsibilities, :responsibilities1, :responsibilities2, :responsibilities3, :responsibilities4, :responsibilities5, :responsibilities6, :responsibilities7, :responsibilities8, :responsibilities9)";
 		$statement = $db->prepare ($query);
 		$statement->bindValue (":userID", $userID);	
 		$statement->bindValue (":employerName", $employerName);			
@@ -370,6 +370,14 @@ if($action === "declineReport"){
 	$query = "UPDATE user SET  isActive = '1', isReported = '0' WHERE userID = :userID";
 	$statement = $db->prepare ($query);
 		$statement->bindValue (":userID", $userID);				
+		$statement->execute();
+}
+// update password
+if($action === "updatePassword"){
+		$query = "UPDATE user SET  pw = :pw WHERE userID = :userID";
+	$statement = $db->prepare ($query);
+		$statement->bindValue (":userID", $userID);
+		$statement->bindValue (":pw", $pw);			
 		$statement->execute();
 }
 //pulling to fill resume
