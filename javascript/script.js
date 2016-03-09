@@ -6,6 +6,8 @@ function insertLanding()
 }
 function addBasicInfo()
 {
+	validateVid();
+	
 	var phoneNumber1 = $('#txtPhoneNumber1').val();
 	var phoneNumber2 = $('#txtPhoneNumber2').val();
 	var phoneNumber3 = $('#txtPhoneNumber3').val();
@@ -14,6 +16,47 @@ function addBasicInfo()
 	
 	$.getJSON( "php/php_queries.php", { action: "addBasicInfo", userID: ls, city: $('#txtCity').val(), state: $('#state').val(), zip: $('#txtZipCode').val(), phoneNumber: phoneNumbers, videoLink: $('#txtLink').val()} );
 }
+
+function validateVid(){
+	var updateLinkBefore = $("#txtLink").val();
+	if(updateLinkBefore.indexOf("https://youtu.be/") >= 0){
+		var updateLinkAfter = updateLinkBefore.slice(17,28);
+			if(updateLinkAfter.length == 11){
+			}
+			else{
+				alert("empty 1 link");
+			}
+		
+	}
+	else if(updateLinkBefore.indexOf("http://youtu.be/") >= 0){
+		var updateLinkAfter = updateLinkBefore.slice(16,27);
+		if(updateLinkAfter.length == 11){
+			}
+			else{
+				alert("empty2 link");
+			}
+	}
+	else if(updateLinkBefore.indexOf("https://www.youtube.com/watch?v=") >= 0){
+		var updateLinkAfter = updateLinkBefore.slice(32,43);
+		if(updateLinkAfter.length == 11){
+			}
+			else{
+				alert("empty3 link");
+			}
+	}
+	else if(updateLinkBefore.indexOf("http://www.youtube.com/watch?v=") >= 0){
+		var updateLinkAfter = updateLinkBefore.slice(31,42);
+		if(updateLinkAfter.length == 11){
+			}
+			else{
+				alert("empty 4link");
+			}
+	}
+	else{
+		alert("INVALID LINK!!")
+	}
+}
+
 function setLocal()
 {
 		$.getJSON( "php/php_queries.php", { action: "setCookie", email: $('#txtEmail').val(), pw:$('#txtPw').val()} )
