@@ -455,10 +455,8 @@ hr{
 	/*background-color:#e3e1e1;*/
 }
 
-#imgFootLogo{
-	margin-top:7px;
-	height:66px;
-	width:358px;
+#proLogo{
+	margin-top:10px;
 }
 
 /*Buttons new look*/
@@ -515,4 +513,5 @@ footer p{
 	font-family:aldo;
 	color:white;
 	margin-top:10px;
+	padding-bottom:10px;
 }
