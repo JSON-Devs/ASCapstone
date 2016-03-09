@@ -16,6 +16,7 @@ html{
 
 body{
 	margin:0 0;
+	margin-bottom:-20px;
 	background-image: url(../images/shine-dotted.png);
 	background-color: #f0f0f0;
 	}

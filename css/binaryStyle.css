@@ -27,6 +27,7 @@ html input,textarea,select{
 
 body{
 	margin: 0 0 100px;
+	margin-bottom:-20px;
 	background-image: url(../images/matrix.gif);
 	margin-bottom:-340px;
 }
