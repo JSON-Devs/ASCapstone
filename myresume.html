@@ -140,22 +140,23 @@
     	<h2 class="RegNow">Video Link Edit</h2>
     	<table class="infoInputs">
     		<tr><td class="alignTable">Video Link:</td><td><input id="txtLink" type="text"></td></tr>
-			<center>Please enter in a youtube link</center>
-    		<tr><td class="alignTable"></td><td><input id="btnEditVideo" type="button" value="Update" action="#"></td></tr>
-    		<tr><td class="alignTable"></td><td><input class="btnCancel" type="button" value="Cancel" onclick="toggle(3)"></td></tr>
-    	</table>
+		</table>	
+			<center>Please enter in a youtube link</center></br>
+    		<center><input id="btnEditVideo" type="button" value="Update" action="#"></center></br>
+    		<center><input class="btnCancel" type="button" value="Cancel" onclick="toggle(3)"></center>
+    	
     </div>
 <!-- End Video Editor -->
 	
 	<div id="editCover" class="wrapper editWrap">
     	<h2 class="RegNow">Cover Letter Edit</h2>
-    	<table class="infoInputs">
+    	<div class="infoInputs">
 		<br/>
     		<center><textarea id="txtCoverLetter" rows="8" cols="40"></textarea></center>
     		<center><input id="btnAddCover" type="button" value="Add"></center><br/>
     		<center><input id="btnEditCover" type="button" value="Update"></center><br/>
     		<center><input class="btnCancel" type="button" value="Cancel" onclick="toggle(4)"></center>
-    	</table>
+    	</div>
     </div>
 <!-- End Cover Letter Editor -->
 	
@@ -176,11 +177,11 @@
 					</td></tr>
 					<tr><td class="alignTable">GPA:</td><td><input id="txtGPA" maxlength="4" type="text"></td></tr>
 				</table>
-				<table class="infoInputs">
+				<div class="infoInputs">
 					<center><input id="btnAddSchool2" type="button" value="Add School"></center><br/>
 					<center><input id="btnEditSchool" type="button" value="Update School" ></center><br/>
 					<center><input class="btnCancel" type="button" value="Cancel" onclick="toggle(5)"></center>
-				</table>
+				</div>
 			</div></td>
 				<td><div class="wrapper">
 				<h2 class="RegNow">Schools Added</h2>
@@ -209,11 +210,11 @@
             		<tr><td colspan="2" class="alignTable">Please use ( / ) at the end of each line.</td></tr>
             		<tr><td class="alignTable">Responsibilities:</td><td><textarea id="txtResp" rows="2" cols="19"></textarea></td></tr>
         		</table>
-        		<table class="infoInputs">
+        		<div class="infoInputs">
         			<center><input id="btnAddEmployer2" type="button" value="Add Employer"></center>
         			<center><input id="btnEditEmployer" type="button" value="Update Employer"  ></center><br/>
         			<center><input class="btnCancel" type="button" value="Cancel" onclick="toggle(6)"></center>
-        		</table>
+        		</div>
     		</div></td>
     		<td><div class="wrapper">
     			<h2 class="RegNow">Companies Added</h2>
@@ -225,6 +226,7 @@
 	
 	<div id="linkGen" class="editWrap">
 		<div class="wrapper">
+		<h2 class="RegNow">Link Generator</h2>
 		<center>
 		Company Name:<input class="text" id= "txtCompanyName" type="text" >
 		<div id = 'newLink'></div>
@@ -240,15 +242,17 @@
 
 	<div id="editPassword" class="wrapper editWrap">
     	<h2 class="RegNow">Change Password</h2>
-    	<table class="infoInputs">
 		<br/>
-    		<center><tr><td>Old password: </td><td><input id="txtOldPassword" type="password"></td></tr></center>
-    		<center><tr><td>New password: </td><td><input id="txtNewPassword1" type="password"></td></tr></center>
-    		<center><tr><td>Confirm password: </td><td><input id="txtNewPassword2" type="password"></td></tr></center>
-    		<center><tr><td colspan="2"><div id="passwordFeedback"></div></td></tr></center>
-    		<center><tr><td><input id="btnChangePassword" type="button" value="Change"></td></tr></center>
-    		<center><tr><td><input class="btnCancel" type="button" value="Cancel" onclick="toggle(8)"></td></tr></center>
-    	</table>
+    	<table class="infoInputs">
+	
+    		<tr><td><center>Old password: </td><td><input id="txtOldPassword" type="password"></center></td></tr>
+    		<tr><td><center>New password: </td><td><input id="txtNewPassword1" type="password"></center></td></tr>
+    		<tr><td><center>Confirm password: </td><td><input id="txtNewPassword2" type="password"></center></td></tr>
+    		<tr><td colspan="2"><center><div id="passwordFeedback"></div></center></td></tr>
+    	</table>	
+			<center><input id="btnChangePassword" type="button" value="Change"></center></br>
+    		<center><input class="btnCancel" type="button" value="Cancel" onclick="toggle(8)"></center>
+    	
     </div>
 <!-- End Change Password -->
 	
