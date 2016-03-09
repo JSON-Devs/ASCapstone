@@ -53,7 +53,7 @@ function validateVid(){
 			}
 	}
 	else{
-		alert("INVALID LINK!!")
+		//alert("INVALID LINK!!")
 	}
 }
 
