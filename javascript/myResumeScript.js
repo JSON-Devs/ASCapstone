@@ -209,10 +209,79 @@ function updateBasic(){
 	var phoneNumber2 = $('#txtPhoneNumber2').val();
 	var phoneNumber3 = $('#txtPhoneNumber3').val();
 	var phoneNumbers = "("+phoneNumber1 + ")"+ phoneNumber2 +"-"+ phoneNumber3;
-
-		$.getJSON( "php/php_queries.php", { action:"updateBasic", userID: ls, firstName: fName, lastName: lName, email: email, city: city, state: state, zip: zip, phoneNumber: phoneNumbers});
+	var feedback = "";
+if(fName == "" || fName == null){
+	feedback += "Error: Please fill in first name. \n"
 }
-
+if(lName == "" || lName == null){
+	feedback += "Error: Please fill in last name. \n"
+}
+if(email == "" || email == null){
+	feedback += "Error: Please fill in email. \n"
+}
+else{
+	var resul = validateEmail(email);
+	if( resul == false)
+	{
+		feedback += "Error: Please fill in valid email. \n"
+	}
+}
+if(city == "" || city == null){
+	feedback += "Error: Please fill in city. \n"
+}
+if(zip == "" || zip == null){
+	feedback += "Error: Please fill in zip. \n"
+}
+else
+{
+	var resul = validateZip(zip) 
+	if( resul == false)
+	{
+		feedback += "Error: Please fill in valid zip. \n"
+	}
+}
+if( feedback.includes('Error:'))
+	{
+		alert(feedback);
+	}
+	else
+	{
+		updateBasic2();
+		setTimeout(function () {
+				window.location.reload();	
+					}, 100);
+	}
+		
+}
+function updateBasic2()
+{	var ls = localStorage.getItem("userID");
+	var fName = $('#txtFirstName').val();
+	var lName = $('#txtLastName').val();
+	var email = $('#txtEmail').val();
+	var city = $('#txtCity').val();
+	var state= $('#state').val();
+	var zip= $('#txtZipCode').val();
+	var phoneNumber1 = $('#txtPhoneNumber1').val();
+	var phoneNumber2 = $('#txtPhoneNumber2').val();
+	var phoneNumber3 = $('#txtPhoneNumber3').val();
+	var phoneNumbers = "("+phoneNumber1 + ")"+ phoneNumber2 +"-"+ phoneNumber3;
+	
+	var phoneNumbers = "("+phoneNumber1 + ")"+ phoneNumber2 +"-"+ phoneNumber3;
+	$.getJSON( "php/php_queries.php", { action:"updateBasic", userID: ls, firstName: fName, lastName: lName, email: email, city: city, state: state, zip: zip, phoneNumber: phoneNumbers});
+}
+function validateEmail(email) {
+    var re = /\w\w+([-+.']\w\w+)*@\w\w+([-.]\w\w+)*\.\w\w+([-.]\w\w+)*/;
+    var resul = re.test(email)
+	
+	return resul;
+}
+function validateZip(zip)
+{
+	  var re = /^\d{5}(?:[-\s]\d{4})?$/;
+    var resul = re.test(zip)
+	
+	return resul;
+}
 /////////////////////////
 //End Basic Information//
 /////////////////////////
@@ -454,13 +523,56 @@ function eduClearBoxes(){
 //Add a school --- Education
 function addSingleSchool(){
 	var ls = localStorage.getItem("userID");
-	$.getJSON( "php/php_queries.php", { action:"addEducation", userID: ls, school: $('#txtSchoolName').val(), degree: $('#txtDegree').val(), startMonth: $('#txtEdStartMonth').val(), startYear: $('#txtEdStartYear').val(), endMonth: $('#txtEdEndMonth').val(), endYear: $('#txtEdEndYear').val(), GPA: $('#txtGPA').val() } )
+	var feedback = "";
+	if ($('#txtSchoolName').val() == "" || $('#txtSchoolName').val() == null){
+		feedback +="Error: Please fill in school name. \n";
+	}
+	if ($('#txtDegree').val() == "" || $('#txtDegree').val() == null){
+		feedback +="Error: Please fill in degree. \n";
+	}
+	if ($('#txtGPA').val() == "" || $('#txtGPA').val() == null || $('#txtGPA').val() < 0 || $('#txtGPA').val() > 4){
+		feedback +="Error: Please fill in valid GPA. \n";
+	}
+	if( feedback.includes('Error:'))
+	{
+		alert(feedback);
+	}
+	else
+	{
+	$.getJSON( "php/php_queries.php", { action:"addEducation", userID: ls, school: $('#txtSchoolName').val(), degree: $('#txtDegree').val(), startMonth: $('#txtEdStartMonth').val(), startYear: $('#txtEdStartYear').val(), endMonth: $('#txtEdEndMonth').val(), endYear: $('#txtEdEndYear').val(), GPA: $('#txtGPA').val() } );
+	setTimeout(function () {
+				 window.location.reload();
+					}, 100);
+	}
+	
 }
 
 //Update Education
 function updateEducation(){
 	var eduId = localStorage.getItem("eduId");
+		var feedback = "";
+	if ($('#txtSchoolName').val() == "" || $('#txtSchoolName').val() == null){
+		feedback +="Error: Please fill in school name. \n";
+	}
+	if ($('#txtDegree').val() == "" || $('#txtDegree').val() == null){
+		feedback +="Error: Please fill in degree. \n";
+	}
+	if ($('#txtGPA').val() == "" || $('#txtGPA').val() == null || $('#txtGPA').val() < 0 || $('#txtGPA').val() > 4){
+		feedback +="Error: Please fill in valid GPA. \n";
+	}
+	if( feedback.includes('Error:'))
+	{
+		alert(feedback);
+	}
+	else
+	{
 	$.getJSON( "php/php_queries.php", { action:"updateEducation", eduID: eduId, school: $('#txtSchoolName').val(), degree: $('#txtDegree').val(), startMonth: $('#txtEdStartMonth').val(), startYear: $('#txtEdStartYear').val(),endMonth: $('#txtEdEndMonth').val(), endYear: $('#txtEdEndYear').val(), GPA: $('#txtGPA').val()  } );
+	setTimeout(function () {
+				 window.location.reload();
+					}, 100);
+	}
+	
+	
 }
 
 //Delete a school --- Education
@@ -651,18 +763,32 @@ $("#txtEmpName").val("");
 //Add an Employer
 function addSingleEmployer(){
 	var ls = localStorage.getItem("userID");
-	
+	var feedback = "";
 	var respSplit = $('#txtResp').val();
 	var maxResp = 10;   						//Max number of Responsibilities the database can hold
 	for(i = 0; i < maxResp; i++){
 		var responsibilities = "responsibilities" + i + "";
 		
 		eval("responsibilities" + i + "= respSplit.split('/')[i]");
-		alert(responsibilities);
+	}
+	if ($('#txtEmpName').val() == "" || $('#txtEmpName').val() == null){
+		feedback +="Error: Please fill in company name. \n"
+	}
+	if ($('#txtPosition').val() == "" || $('#txtPosition').val() == null){
+		feedback +="Error: Please fill in position. \n"
+	}
+	if( feedback.includes('Error:'))
+	{
+		alert(feedback);
+	}
+	else
+	{
+			$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9 } );
+	setTimeout(function () {
+				 window.location.reload();
+					}, 100);
 	}
 	
-	$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9 } );
-		console.log('in Button');
 }
 
 //Update Employer
@@ -670,16 +796,30 @@ function updateEmployer(){
 	console.log('function');
 	var empId = localStorage.getItem("empId");
 	var respSplit = $('#txtResp').val();
-	var maxResp = 10;   						//Max number of Responsibilities the database can hold
+	var maxResp = 10;  	//Max number of Responsibilities the database can hold
+	var feedback = "";
 	for(i = 0; i< maxResp; i++){
 		var responsibilities = "responsibilities" + i + "";
 		eval("responsibilities" + i + "= respSplit.split('/')[i]");
 	}
-	
-	$.getJSON( "php/php_queries.php", { action:"updateEmployment", empID: empId, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9  } );
+	if ($('#txtEmpName').val() == "" || $('#txtEmpName').val() == null){
+		feedback +="Error: Please fill in company name. \n"
+	}
+	if ($('#txtPosition').val() == "" || $('#txtPosition').val() == null){
+		feedback +="Error: Please fill in position. \n"
+	}
+	if( feedback.includes('Error:'))
+	{
+		alert(feedback);
+	}
+	else
+	{
+			$.getJSON( "php/php_queries.php", { action:"updateEmployment", empID: empId, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9  } );
 	setTimeout(function () {
 				 window.location.reload();
 					}, 100);
+	}
+
 }
 
 //Delete an Employer
@@ -860,9 +1000,7 @@ $(document).ready(function(){
 	});
 	$("#btnEditBasic").click(function(){
 		updateBasic();
-			setTimeout(function () {
-				window.location.reload();	
-					}, 100);
+			
 		
 	});
 	$("#btnEditCover").click(function(){
@@ -874,16 +1012,13 @@ $(document).ready(function(){
 	});
 	$("#btnAddSchool2").click(function(){
 		addSingleSchool();
-			setTimeout(function () {
-				 window.location.reload();
-					}, 100);
+		
+				
 		
 	});
 	$("#btnEditSchool").click(function(){
 		updateEducation();
-			setTimeout(function () {
-					window.location.reload();
-					}, 100);
+		
 		
 	});
 	
@@ -903,9 +1038,7 @@ $(document).ready(function(){
 	$("#btnAddEmployer2").click(function(){
 		
 		addSingleEmployer();
-			setTimeout(function () {
-				window.location.reload();	
-					}, 100);
+			
 		
 	});
 	$("#btnEditPicture").click(function(){
