@@ -109,7 +109,7 @@ function testPassword3(){
 	{
 		setChangedPassword();
 			setTimeout(function () {
-				 	$('#passwordFeedback').html('Your password has been changed! Please hit cancle to exit change password screen.');
+				 	$('#passwordFeedback').html('Your password has been changed!');
 					}, 100);
 	}
 	else
