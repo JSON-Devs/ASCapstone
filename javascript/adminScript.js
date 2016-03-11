@@ -65,7 +65,7 @@ function resetLocalStorage()
 function pageSecurity(json)
 {
 	var ls = localStorage.getItem("userID");
-		if(ls == 101 )
+		if(json.Result[0].isAdmin == true )
 	{
 		loadReports();
 	}
@@ -85,7 +85,7 @@ $(document).ready(function(){
 $(window).load(function(){
 	var ls = localStorage.getItem("userID");
  console.log(ls);
-		$.getJSON( "php/adminPhp.php", { action:"checkAdmin", ls})
+		$.getJSON( "php/adminPhp.php", { action:"checkAdmin", userID: ls})
 	.done(function(json){
 		pageSecurity(json);
 		});
