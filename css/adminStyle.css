@@ -1,25 +1,35 @@
 @charset "utf-8";
 /* CSS Document */
 
+/*Fonts*/
+
+@font-face{
+	font-family:aldo;
+	src:url(../fonts/aldo/Aldo_PC.ttf);
+}
+
 /*Header*/
 header{
-	background-color:#d75c37;
+	/*background-color:#d75c37;*/
+	background-color:#bd7f3d;
 	width:100%;
 	height:100px;
+	border-bottom:4px solid #363636;
+	font-family:aldo;
 }
 
 #imgAdminLogo{
 	margin-top:16px;
-	margin-right:10px;
-	height:66px;
-	width:358px;
-	float:right;
+	margin-left:10px;
+	float:left;
 	position:relative:
 }
 
 #adminHeaderDiv h1{
+	color:#363636;
 	margin-top:0px;
-	margin-left:10px;
+	padding-left:90px;
+	padding-top:33.5px;
 }
 
 #adminHeaderDiv p{
@@ -28,16 +38,15 @@ header{
 }
 
 /*Body Elements*/
-/*body{
-	margin:0px;
-}*/
+
 body {
-    margin: 0 0 100px; /* bottom = footer height */
+    margin: 0 0 45px; /* bottom = footer height */
+	background-color: #bd7f3d;
+	background-image:url(../images/concrete-wall-3.png);
 }
 
 #adminDiv{
 	text-align:center;
-	text-decoration:underline;
 	margin:auto;
 	overflow:auto;
 	padding-bottom:120px;
@@ -52,9 +61,8 @@ body {
 	border: 1px solid black;
 	border-radius:5px;
 	margin:auto;
-	-webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
-	box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.75);
+	padding:2px;
+	background-color:#e7c7a7;
 }
 
 .adminTable tr{
@@ -63,9 +71,27 @@ body {
 
 .adminTable td{
 	border: 1px solid black;
+	text-decoration:none;
+	padding:2px;
 }
 .adminTable th{
 	border: 1px solid black;
+	text-decoration:underline;
+	padding:2px;
+}
+
+#reportedUserHeader{
+	margin-top:15px;
+	margin-bottom:5px;
+	text-decoration:underline;
+	font-weight: bold;
+}
+
+#newUserHeader{
+	margin-top:15px;
+	margin-bottom:5px;
+	text-decoration:underline;
+	font-weight: bold;
 }
 
 .buttonTest{
@@ -109,32 +135,18 @@ html {
     min-height: 100%;
 }
 
-/*footer{
-	background-color:#d75c37;
-	width:100%;
-	height:100px;
-	text-align:center;
-    position: absolute;
-    bottom: 0;
-    /*left: 0;
-}*/
-
-/*footer{
-	background-color:#d75c37;
-	text-align:center;
-	width:100%;
-	position: relative;
-	margin-top: -100px; /* negative value of footer height 
-	height: 100px;
-	clear:both;
-}*/
-
 footer {
-background-color:#d75c37;
-text-align:center;
+	/*background-color:#d75c37;*/
+	background-color:#bd7f3d;
+	color:#363636;
+	text-align:center;
     position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
+    left:0;
+    bottom:0;
+    height:auto;
+    width:100%;
+    padding-bottom:10px;
+    padding-top:10px;
+    border-top:4px solid #363636;
+    font-family:aldo;
 }

@@ -13,7 +13,7 @@ function loadNew()
 function fillNew(json)
 {
 	var count = 0;
-	var str ="<table class = 'adminTable'><tr><td>First Name</td><td>User ID</td><td> Last Name</td></tr>";
+	var str ="<table class = 'adminTable'><tr><th>First Name</th><th>User ID</th><th> Last Name</th><th>Action</th></tr>";
 	for(i=0; i<json.Result.length; i++)
 	{
 	str+= "<tr><td>"+json.Result[i].firstName + "</td><td> " + json.Result[i].userID + "</td><td> " + json.Result[i].lastName +"</td><td><input type='button' class='buttonTest' id='suspendBtn_"+ i +"'onclick ='singleRecord("+json.Result[i].userID+")' value='View' action='#'></td></tr>";
@@ -24,7 +24,7 @@ function fillNew(json)
 	
 	str+="</table>";
 	$('#reviewDiv').html(str);
-	var strrr = "# Of New Profiles To be Checked:" + count;
+	var strrr = "# Of New Profiles To Be Checked: " + count;
 	$('#newUserHeader').html(strrr);
 }
 function singleRecord(ids)
@@ -44,7 +44,7 @@ function loadReported()
 function fillReported(json)
 {
 		var count = 0;
-	var str ="<table class = 'adminTable'><tr><th>First Name</th><th>User ID</th><th> Last Name</th></tr>";
+	var str ="<table class = 'adminTable'><tr><th>First Name</th><th>User ID</th><th> Last Name</th><th>Action</th></tr>";
 	for(i=0; i<json.Result.length; i++)
 	{
 	str+= "<tr><td>"+json.Result[i].firstName + "</td><td> " + json.Result[i].userID + "</td><td> " + json.Result[i].lastName +"</td><td><input type='button' class='buttonTest' id='suspendBtn_"+ i +"'onclick ='singleRecord("+json.Result[i].userID+")' value='View' action='#'></td></tr>";
@@ -55,7 +55,7 @@ function fillReported(json)
 	
 	str+="</table>";
 	$('#reportedDiv').html(str);
-	var strrr = "# Of Reported Profiles:" + count;
+	var strrr = "# Of Reported Profiles: " + count;
 	$('#reportedUserHeader').html(strrr);
 }
 function resetLocalStorage()
