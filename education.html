@@ -1,48 +1,47 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>My Professional Self - Online Resume Maker</title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link href="css/mainStyle.css" rel="stylesheet" type="text/css">
-<script src="javascript/jquery-2.2.1.js"></script>
-<script src="javascript/script.js"></script>
-<script src="javascript/jquery.autotab.js"></script>
-<script src="javascript/regScript.js"></script>
+	<meta charset="utf-8">
+	<title>My Professional Self - Online Resume Maker</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link href="css/mainStyle.css" rel="stylesheet" type="text/css">
+	<script src="javascript/jquery-2.2.1.js"></script>
+	<script src="javascript/script.js"></script>
+	<script src="javascript/jquery.autotab.js"></script>
+	<script src="javascript/regScript.js"></script>
 </head>
-
 <body onload="pullDates()">
 	<header>
     	<img id="imgMainLogo" src="images/logo.png"></img>
 		<h1 id="headerName">My Professional Self</h1>
     </header>
-    	<table id="divTable">
-    		<td><div class="wrapper">
-    			<h2 class="RegNow">Add your Education</h2>
-    			<table class="infoInputs">
-            		<tr><td class="alignTable">School Name:</td><td><input id="txtSchoolName" type="text"></td></tr>
-            		<tr><td class="alignTable">Degree Program:</td><td><input id="txtDegree" type="text"></td></tr>
-            		<tr><td class="alignTable">Start Date:</td><td>
-						<div id="txtEdStartM"></div>
-						<div id="txtEdStartY"></div>
-					</td></tr>
-					<tr><td class="alignTable">End Date:</td><td>
-						<div id="txtEdEndM"></div>
-						<div id="txtEdEndY"></div>
-					</td></tr>
-            		<tr><td class="alignTable">GPA:</td><td><input id="txtGPA" type="text"></td></tr>
-        		</table>
-        		<table class="infoInputs">
-        			<center><input id="btnAddSchool" type="button" value="Add School" action="#"></center>
-        			<tr><td class="alignTable"></td><td><input id="btnNext-Emp" type="button" value="Next" action="#"></td></tr>	
-        		</table>
-    		</div></td>
-    		<td><div class="wrapper">
-    			<h2 class="RegNow">Schools Added</h2>
-    			<div id="schoolsDiv"></div>
-    		</div></td>
-    	</table>
-		<footer id="regFooter"><p>&copy; My Professional Self 2016</p></footer>
+    <table id="divTable">
+    	<td><div class="wrapper">
+    		<h2 class="RegNow">Add your Education</h2>
+    		<table class="infoInputs">
+        		<tr><td class="alignTable">School Name:</td><td><input id="txtSchoolName" type="text"></td></tr>
+        		<tr><td class="alignTable">Degree Program:</td><td><input id="txtDegree" type="text"></td></tr>
+        		<tr><td class="alignTable">Start Date:</td><td>
+					<div id="txtEdStartM"></div>
+					<div id="txtEdStartY"></div>
+				</td></tr>
+				<tr><td class="alignTable">End Date:</td><td>
+					<div id="txtEdEndM"></div>
+					<div id="txtEdEndY"></div>
+				</td></tr>
+        		<tr><td class="alignTable">GPA:</td><td><input id="txtGPA" type="text"></td></tr>
+    		</table>
+    		<table class="infoInputs">
+    			<center><input id="btnAddSchool" type="button" value="Add School" action="#"></center>
+    			<tr><td class="alignTable"></td><td><input id="btnNext-Emp" type="button" value="Next" action="#"></td></tr>	
+    		</table>
+    	</div></td>
+    	<td><div class="wrapper">
+    		<h2 class="RegNow">Schools Added</h2>
+    		<div id="schoolsDiv"></div>
+    	</div></td>
+    </table>
+	<footer id="regFooter"><p>&copy; My Professional Self 2016</p></footer>
 </body>
 </html>

@@ -1,50 +1,49 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>My Professional Self - Online Resume Maker</title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link href="css/mainStyle.css" rel="stylesheet" type="text/css">
-<script src="javascript/jquery-2.2.1.js"></script>
-<script src="javascript/script.js"></script>
-<script src="javascript/jquery.autotab.js"></script>
-<script src="javascript/regScript.js"></script>
+	<meta charset="utf-8">
+	<title>My Professional Self - Online Resume Maker</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link href="css/mainStyle.css" rel="stylesheet" type="text/css">
+	<script src="javascript/jquery-2.2.1.js"></script>
+	<script src="javascript/script.js"></script>
+	<script src="javascript/jquery.autotab.js"></script>
+	<script src="javascript/regScript.js"></script>
 </head>
-
 <body onload="pullDates()">
 	<header>
     	<img id="imgMainLogo" src="images/logo.png"></img>
 		<h1 id="headerName">My Professional Self</h1>
     </header>
-    	<table id="divTable">
-    		<td><div class="wrapper">
-    			<h2 class="RegNow">Add Employer Information</h2>
-    			<table class="infoInputs">
-            		<tr><td class="alignTable">Employer Name:</td><td><input id="txtEmpName" type="text"></td></tr>
-            		<tr><td class="alignTable">Position:</td><td><input id="txtPosition" type="text"></td></tr>
-            		<tr><td class="alignTable">Start Date:</td><td>
-  						<div id="txtEmpStartM"></div>
-  						<div id="txtEmpStartY"></div>
-            		</td></tr>
-            		<tr><td class="alignTable">End Date:</td><td>
-  						<div id="txtEmpEndM"></div>
-  						<div id="txtEmpEndY"></div>
-            		</td></tr>
-            		<tr><td class="alignTable">Employer Link:</td><td><input id="txtEmpLink" type="text"></td></tr>
-            		<tr><td colspan="2" class="alignTable">Please use ( / ) at the end of each line.</td></tr>
-            		<tr><td class="alignTable">Responsibilities:</td><td><textarea id="txtResp" rows="2" cols="19"></textarea></td></tr>
-        		</table>
-        		<table class="infoInputs">
-        			<center><input id="btnAddEmployer" type="button" value="Add Employer" action="#"></center>
-        			<tr><td class="alignTable"></td><td><input id="btnFinish" type="button" value="Finish" action="#"></td></tr>	
-        		</table>
-    		</div></td>
-    		<td><div class="wrapper">
-    			<h2 class="RegNow">Companies Added</h2>
-    			<div id="companiesDiv"></div>
-    		</div></td>
-    	</table>
-		<footer id="regFooter"><p>&copy; My Professional Self 2016</p></footer>
+	<table id="divTable">
+   	<td><div class="wrapper">
+   		<h2 class="RegNow">Add Employer Information</h2>
+   		<table class="infoInputs">
+       		<tr><td class="alignTable">Employer Name:</td><td><input id="txtEmpName" type="text"></td></tr>
+       		<tr><td class="alignTable">Position:</td><td><input id="txtPosition" type="text"></td></tr>
+       		<tr><td class="alignTable">Start Date:</td><td>
+  				<div id="txtEmpStartM"></div>
+  				<div id="txtEmpStartY"></div>
+       		</td></tr>
+       		<tr><td class="alignTable">End Date:</td><td>
+  				<div id="txtEmpEndM"></div>
+  				<div id="txtEmpEndY"></div>
+       		</td></tr>
+       		<tr><td class="alignTable">Employer Link:</td><td><input id="txtEmpLink" type="text"></td></tr>
+       		<tr><td colspan="2" class="alignTable">Please use ( / ) at the end of each line.</td></tr>
+       		<tr><td class="alignTable">Responsibilities:</td><td><textarea id="txtResp" rows="2" cols="19"></textarea></td></tr>
+   		</table>
+   		<table class="infoInputs">
+   			<center><input id="btnAddEmployer" type="button" value="Add Employer" action="#"></center>
+   			<tr><td class="alignTable"></td><td><input id="btnFinish" type="button" value="Finish" action="#"></td></tr>	
+   		</table>
+   	</div></td>
+   	<td><div class="wrapper">
+   		<h2 class="RegNow">Companies Added</h2>
+   		<div id="companiesDiv"></div>
+   	</div></td>
+	</table>
+	<footer id="regFooter"><p>&copy; My Professional Self 2016</p></footer>
 </body>
 </html>

@@ -1,37 +1,35 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>My Professional Self - Online Resume Maker</title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link href="css/mainStyle.css" rel="stylesheet" type="text/css">
-<script src="javascript/jquery-2.2.1.js"></script>
-<script src="javascript/script.js"></script>
-<script src="javascript/jquery.autotab.js"></script>
-<script src="javascript/regScript.js"></script>
+	<meta charset="utf-8">
+	<title>My Professional Self - Online Resume Maker</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link href="css/mainStyle.css" rel="stylesheet" type="text/css">
+	<script src="javascript/jquery-2.2.1.js"></script>
+	<script src="javascript/script.js"></script>
+	<script src="javascript/jquery.autotab.js"></script>
+	<script src="javascript/regScript.js"></script>
 </head>
-
 <body onload="pullStates()">
 	<header>
     	<img id="imgMainLogo" src="images/logo.png"></img>
 		<h1 id="headerName">My Professional Self</h1>
     </header>
-		<div class="wrapper">
-			<h2 class="RegNow">Basic Information</h2>
-			<table class="infoInputs">
-				<tr><td class="alignTable">City:</td><td><input id="txtCity" type="text"></td></tr>
-				<tr><td class="alignTable">State:</td><td><div id=showStates></div></td></tr>
-				<tr><td class="alignTable">Zip Code:</td><td><input id="txtZipCode" type="text"></td></tr>
-				<tr><td class="alignTable">Phone Number:</td><td>&nbsp;(<input class="phoneSmall phoneNumber" id="txtPhoneNumber1" maxlength="3" type="text">) <input class="phoneSmall phoneNumber" id="txtPhoneNumber2" maxlength="3" type="text"> - <input class="phoneBig phoneNumber" id="txtPhoneNumber3" maxlength="4" type="text"></td></tr>
-				<tr><td colspan="2" class="alignTable" style="font-size:15px;">Please use a youtube link for your submission*</td></tr>
-				<tr><td class="alignTable">Video Link:</td><td><input id="txtLink" type="text"></td></tr>
-				
-			</table>
-			<table class="infoInputs">
-						<tr><td class="alignTable"></td><td><input id="btnNext-Edu" type="button" value="Next" action="#"></td></tr>	
-					</table>
-		</div>
-		<footer id="regFooter"><p>&copy; My Professional Self 2016</p></footer>
+	<div class="wrapper">
+		<h2 class="RegNow">Basic Information</h2>
+		<table class="infoInputs">
+			<tr><td class="alignTable">City:</td><td><input id="txtCity" type="text"></td></tr>
+			<tr><td class="alignTable">State:</td><td><div id=showStates></div></td></tr>
+			<tr><td class="alignTable">Zip Code:</td><td><input id="txtZipCode" type="text"></td></tr>
+			<tr><td class="alignTable">Phone Number:</td><td>&nbsp;(<input class="phoneSmall phoneNumber" id="txtPhoneNumber1" maxlength="3" type="text">) <input class="phoneSmall phoneNumber" id="txtPhoneNumber2" maxlength="3" type="text"> - <input class="phoneBig phoneNumber" id="txtPhoneNumber3" maxlength="4" type="text"></td></tr>
+			<tr><td colspan="2" class="alignTable" style="font-size:15px;">Please use a youtube link for your submission*</td></tr>
+			<tr><td class="alignTable">Video Link:</td><td><input id="txtLink" type="text"></td></tr>
+		</table>
+		<table class="infoInputs">
+			<tr><td class="alignTable"></td><td><input id="btnNext-Edu" type="button" value="Next" action="#"></td></tr>	
+		</table>
+	</div>
+	<footer id="regFooter"><p>&copy; My Professional Self 2016</p></footer>
 </body>
 </html>
