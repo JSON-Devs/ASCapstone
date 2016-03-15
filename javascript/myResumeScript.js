@@ -890,6 +890,8 @@ function inactivateLink2(linkID){
 	$.getJSON( "php/php_queries.php", { action:"deactivateLink", linkID: linkID});
 			
 }
+
+//Get how many times each link has been viewed
 function countLink(json){
 	var timesViewed = json.Result[0].timesViewed;
 	timesViewed++;

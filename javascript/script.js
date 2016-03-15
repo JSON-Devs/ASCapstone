@@ -105,6 +105,9 @@ function testPassword3(){
 		setChangedPassword();
 		setTimeout(function () {
 			$('#passwordFeedback').html('Your password has been changed!');
+			$('#txtOldPassword').val('');
+			$('#txtNewPassword1').val('');
+			$('#txtNewPassword2').val('');
 		}, 100);
 	}
 	else{
