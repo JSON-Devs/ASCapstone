@@ -29,34 +29,36 @@ function direct(json){
 		window.location = "index.html";
 	}
 	else{
-		linkCount(json);
+		//linkCount(json);
 		localStorage.setItem("resumeID", json.Result.userID );
 		var ls = localStorage.getItem("resumeID");
+		var linkID = json.Result.linkID;
+		var timesViewed = json.Result.timesViewed;
 			$.getJSON( "php/php_queries.php", { action:"fillUser", userID: ls } )
 			.done(function(json){		
-				findActive(json);
+				findActive(json, timesViewed, linkID);
 			});
 			
 	}
 }
 //pull all data from user
-function linkCount(json){
-	var timesViewed = json.Result.timesViewed;
+function linkCount(timesViewed, linkID){
+	//var timesViewed = json.Result.timesViewed;
 	timesViewed++;
-	var linkID = json.Result.linkID;
+	//var linkID = json.Result.linkID;
 	$.getJSON( "php/php_queries.php", { action:"linkViewCount", linkID: linkID, timesViewed: timesViewed } );
 }
-function findActive(json){
+function findActive(json, timesViewed, linkID){
 	if(json.Result[0].isActive == false){
 		window.location = "index.html";
 	}
 	else{
 		loadCover();
-			loadVideo();
-			loadBasic();
-			loadEmp();
-			loadEdu();
-			
+		loadVideo();
+		loadBasic();
+		loadEmp();
+		loadEdu();
+		linkCount(timesViewed, linkID);
 	}
 }
 function changeStyle(json){
