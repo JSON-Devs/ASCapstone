@@ -1,49 +1,45 @@
 /*MyResumeScript page is the editable page where the account holder can make changes to the page*/
 
+//Function calling the states and dates functions
 function pullStatesAndDates(){
 	pullStates();
 	pullMonths();
 	pullYears();
 }
 
+//Pull states from database
 function pullStates(){
-	
 	$.getJSON( "php/php_queries.php", { action:"getStates" } )
-		.done(function( json ) {
-			fillInStates(json);
-		});
+	.done(function( json ) {
+		fillInStates(json);
+	});
 }
 
+//Fill in states into drop down list
 function fillInStates(json){
 	str = "";
-	
 	str += "<select id='state' name='state'>";
-	
-	for (i=0;i<json.Result.length; i++)
-	{
+	for (i=0;i<json.Result.length; i++){
 		str += "<option value='" + json.Result[i].stateAbbr + "'>" + json.Result[i].stateAbbr + "</option>";
 	}
 	str += "</select>";
-	
 	$('#showStates').append(str);
 }
 
+//Pull months from database
 function pullMonths(){
-	
 	$.getJSON( "php/php_queries.php", { action:"getMonths" } )
-		.done(function( json ) {
-			fillInMonths(json);
-		});
+	.done(function( json ) {
+		fillInMonths(json);
+	});
 }
 
+//Fill in months into drop down list
 function fillInMonths(json){
 	str = "";
-	
-	for (i=0;i<json.Result.length; i++)
-	{
+	for (i=0;i<json.Result.length; i++){
 		str += "<option value='" + json.Result[i].monthVal + "'>" + json.Result[i].monthVal + "</option>";
 	}
-	
 	strEdStart = "<select id='txtEdStartMonth' name='month'>" + str + "</select>";
 	$('#txtEdStartM').append(strEdStart);
 	strEdEnd = "<select id='txtEdEndMonth' name='month'>" + str + "</select>";
@@ -54,20 +50,20 @@ function fillInMonths(json){
 	$('#txtEmpEndM').append(strEmpEnd);
 }
 
+//Pull years from database
 function pullYears(){
 	$.getJSON( "php/php_queries.php", { action:"getYears" } )
-		.done(function( json ) {
-			fillInYears(json);
-		});
+	.done(function( json ) {
+		fillInYears(json);
+	});
 }
 
+//Fill in years into a drop down list
 function fillInYears(json){
 	str = "";
-	for (i=0;i<json.Result.length; i++)
-	{
+	for (i=0;i<json.Result.length; i++){
 		str += "<option value='" + json.Result[i].yearNum + "'>" + json.Result[i].yearNum + "</option>";
 	}
-	
 	strEdStart = "<select id='txtEdStartYear' name='year'>" + str + "</select>";
 	$('#txtEdStartY').append(strEdStart);
 	strEdEnd = "<select id='txtEdEndYear' name='year'>" + str + "</select>";
@@ -105,11 +101,9 @@ function toggle(num){
 function updateStyle(){
 	var ls = localStorage.getItem("userID");
 	var styleType = $("#styleList").val();
-	
-		$.getJSON( "php/php_queries.php", { action:"updateStyle", userID: ls, styleType: styleType});
-	
-	
+	$.getJSON( "php/php_queries.php", { action:"updateStyle", userID: ls, styleType: styleType});
 }
+
 function changeStyle(json){
 	
 	if (json.Result[0].styleType === '0') {
@@ -134,16 +128,18 @@ function changeStyle(json){
 function loadProfilePicture(json){
 	var imageTag = json.Result[0].pictureLink;
 	//var el = document.getElementById("mePicture").style.backgroundImage;
-		document.getElementById("mePicture").style.backgroundImage = "url("+imageTag+")";
+	document.getElementById("mePicture").style.backgroundImage = "url("+imageTag+")";
 }
+
 function updatePicture(){
 	var ls = localStorage.getItem("userID");
 	var pictureLink = $('#txtPicture').val();
 	$.getJSON( "php/php_queries.php", { action:"updatePicture", userID: ls, pictureLink: pictureLink } )
-		setTimeout(function () {
-				 window.location.reload();
-					}, 100);
+	setTimeout(function () {
+		window.location.reload();
+	}, 100);
 }
+
 ///////////////////////
 //End Profile Picture//
 ///////////////////////
@@ -178,13 +174,13 @@ function fillBasic(json){
 //Load Basic Information
 function loadBasic(){
 	var ls = localStorage.getItem("userID");
-		$.getJSON( "php/php_queries.php", { action:"fillUser", userID: ls})
+	$.getJSON( "php/php_queries.php", { action:"fillUser", userID: ls})
 	.done(function(json){
 		fillBasic(json);
 		fillBasic2(json);
 		changeStyle(json);
 		loadProfilePicture(json);
-		});
+	});
 }
 
 //Display Basic Information
@@ -210,51 +206,46 @@ function updateBasic(){
 	var phoneNumber3 = $('#txtPhoneNumber3').val();
 	var phoneNumbers = "("+phoneNumber1 + ")"+ phoneNumber2 +"-"+ phoneNumber3;
 	var feedback = "";
-if(fName == "" || fName == null){
-	feedback += "Error: Please fill in first name. \n"
-}
-if(lName == "" || lName == null){
-	feedback += "Error: Please fill in last name. \n"
-}
-if(email == "" || email == null){
-	feedback += "Error: Please fill in email. \n"
-}
-else{
-	var resul = validateEmail(email);
-	if( resul == false)
-	{
-		feedback += "Error: Please fill in valid email. \n"
+	if(fName == "" || fName == null){
+		feedback += "Error: Please fill in first name. \n"
 	}
-}
-if(city == "" || city == null){
-	feedback += "Error: Please fill in city. \n"
-}
-if(zip == "" || zip == null){
-	feedback += "Error: Please fill in zip. \n"
-}
-else
-{
-	var resul = validateZip(zip) 
-	if( resul == false)
-	{
-		feedback += "Error: Please fill in valid zip. \n"
+	if(lName == "" || lName == null){
+		feedback += "Error: Please fill in last name. \n"
 	}
-}
-if( feedback.includes('Error:'))
-	{
+	if(email == "" || email == null){
+		feedback += "Error: Please fill in email. \n"
+	}
+	else{
+		var resul = validateEmail(email);
+		if(resul == false){
+			feedback += "Error: Please fill in valid email. \n"
+		}
+	}
+	if(city == "" || city == null){
+		feedback += "Error: Please fill in city. \n"
+	}
+	if(zip == "" || zip == null){
+		feedback += "Error: Please fill in zip. \n"
+	}
+	else{
+		var resul = validateZip(zip) 
+		if(resul == false){
+			feedback += "Error: Please fill in valid zip. \n"
+		}
+	}
+	if( feedback.includes('Error:')){
 		alert(feedback);
 	}
-	else
-	{
+	else{
 		updateBasic2();
 		setTimeout(function () {
-				window.location.reload();	
-					}, 100);
-	}
-		
+			window.location.reload();	
+		}, 100);
+	}	
 }
-function updateBasic2()
-{	var ls = localStorage.getItem("userID");
+
+function updateBasic2(){	
+	var ls = localStorage.getItem("userID");
 	var fName = $('#txtFirstName').val();
 	var lName = $('#txtLastName').val();
 	var email = $('#txtEmail').val();
@@ -265,23 +256,26 @@ function updateBasic2()
 	var phoneNumber2 = $('#txtPhoneNumber2').val();
 	var phoneNumber3 = $('#txtPhoneNumber3').val();
 	var phoneNumbers = "("+phoneNumber1 + ")"+ phoneNumber2 +"-"+ phoneNumber3;
-	
 	var phoneNumbers = "("+phoneNumber1 + ")"+ phoneNumber2 +"-"+ phoneNumber3;
 	$.getJSON( "php/php_queries.php", { action:"updateBasic", userID: ls, firstName: fName, lastName: lName, email: email, city: city, state: state, zip: zip, phoneNumber: phoneNumbers});
 }
+
+//Validate Email
 function validateEmail(email) {
     var re = /\w\w+([-+.']\w\w+)*@\w\w+([-.]\w\w+)*\.\w\w+([-.]\w\w+)*/;
     var resul = re.test(email)
 	
 	return resul;
 }
-function validateZip(zip)
-{
+
+//Validate Zip Code
+function validateZip(zip){
 	  var re = /^\d{5}(?:[-\s]\d{4})?$/;
     var resul = re.test(zip)
 	
 	return resul;
 }
+
 /////////////////////////
 //End Basic Information//
 /////////////////////////
@@ -306,7 +300,8 @@ function fillVideo(json){
 		$("#txtLink").val(videoLin);
 		var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/' + json.Result[0].videoLink + '?rel=0" frameborder="0" allowfullscreen></iframe>'
 		$("#vidEmbed").append(vidFrame);
-	}else{
+	}
+	else{
 		var videoLin = 'https://youtu.be/S5RDXlRXh8c';
 		$("#txtLink").val(videoLin);
 		var vidFrame = '<iframe width="450" height="253" src="https://www.youtube.com/embed/S5RDXlRXh8c?rel=0" frameborder="0" allowfullscreen></iframe>'
@@ -319,46 +314,50 @@ function updateVid(){
 	var updateLinkBefore = $("#txtLink").val();
 	if (updateLinkBefore == ""){		
 		sendVid(updateLinkBefore);
-	}else{
+	}
+	else{
 		if(updateLinkBefore.indexOf("https://youtu.be/") >= 0){
 			var updateLinkAfter = updateLinkBefore.slice(17,28);
-				if(updateLinkAfter.length == 11){
-					console.log(updateLinkAfter);
-					sendVid(updateLinkAfter);
-				}
-				else{
-					alert("empty 1 link");
-				}
-			
-		}else if(updateLinkBefore.indexOf("http://youtu.be/") >= 0){
+			if(updateLinkAfter.length == 11){
+				console.log(updateLinkAfter);
+				sendVid(updateLinkAfter);
+			}
+			else{
+				alert("Invalid Link Type");
+			}		
+		}
+		else if(updateLinkBefore.indexOf("http://youtu.be/") >= 0){
 			var updateLinkAfter = updateLinkBefore.slice(16,27);
 			if(updateLinkAfter.length == 11){
-					console.log(updateLinkAfter);
-					sendVid(updateLinkAfter);
-				}
-				else{
-					alert("empty2 link");
-				}
-		}else if(updateLinkBefore.indexOf("https://www.youtube.com/watch?v=") >= 0){
+				console.log(updateLinkAfter);
+				sendVid(updateLinkAfter);
+			}
+			else{
+				alert("Invalid Link Type");
+			}
+		}
+		else if(updateLinkBefore.indexOf("https://www.youtube.com/watch?v=") >= 0){
 			var updateLinkAfter = updateLinkBefore.slice(32,43);
 			if(updateLinkAfter.length == 11){
-					console.log(updateLinkAfter);
-					sendVid(updateLinkAfter);
-				}
-				else{
-					alert("empty3 link");
-				}
-		}else if(updateLinkBefore.indexOf("http://www.youtube.com/watch?v=") >= 0){
+				console.log(updateLinkAfter);
+				sendVid(updateLinkAfter);
+			}
+			else{
+				alert("Invalid Link Type");
+			}
+		}
+		else if(updateLinkBefore.indexOf("http://www.youtube.com/watch?v=") >= 0){
 			var updateLinkAfter = updateLinkBefore.slice(31,42);
 			if(updateLinkAfter.length == 11){
-					console.log(updateLinkAfter);
-					sendVid(updateLinkAfter);
-				}
-				else{
-					alert("empty 4link");
-				}
-		}else{
-			alert("INVALID LINK!!")
+				console.log(updateLinkAfter);
+				sendVid(updateLinkAfter);
+			}
+			else{		
+				alert("Invalid Link Type");
+			}
+		}
+		else{
+			alert("Invalid Link Type")
 		}
 	}
 }
@@ -367,9 +366,9 @@ function updateVid(){
 function sendVid(updatedLink){
 	var ls = localStorage.getItem("userID");
 	$.getJSON( "php/php_queries.php", { action:"updateVideo", userID: ls, videoLink: updatedLink } )
-		setTimeout(function () {
-				 window.location.reload();
-					}, 100);
+	setTimeout(function () {
+		window.location.reload();
+	}, 100);
 }
 
 /////////////
@@ -394,8 +393,7 @@ function loadCover(){
 			$("#btnEditCover").hide();
 			$("#btnAddCover").show();
 		}
-		
-		});
+	});
 }
 
 //Fill Cover Letter
@@ -404,15 +402,6 @@ function fillCover(json){
 	$("#txtCoverLetter").val(coverLett);
 	$("#coverLetterText").append(coverLett);
 }
-
-//Add Cover Letter
-/*
-function addCover(){
-	var ls = localStorage.getItem("userID");
-	var newCover = $("#txtCoverLetter").val();
-	$.getJSON( "php/php_queries.php", { action:"addCover", userID: ls, coverLetter: newCover } );
-}
-*/
 
 //Update Cover Letter
 function updateCover(){
@@ -436,7 +425,7 @@ function loadEducation(eduId){
 		fillEducation(json, eduId);
 		$("#btnEditSchool").show();
 		$("#btnAddSchool2").hide();
-		});
+	});
 }
 
 //Fill in Education
@@ -465,19 +454,19 @@ function loadEdu(){
 	$.getJSON( "php/php_queries.php", { action:"listEducation", userID: ls } )
 	.done(function(json){
 		fillEdu(json);
-		});
+	});
 }
 
 //Display Education information
 function fillEdu(json){
 	var eduInfo = '<h4>Education</h4>';
 	for(i=0; i<json.Result.length; i++){
-				eduInfo += '<h5>' + json.Result[i].school + '</h5>' +
-				'<p>' + json.Result[i].degree + '</p>' +
-				'<p>Start date: ' + json.Result[i].startDateMonth + ', ' + json.Result[i].startDateYear + '</p>' +
-				'<p>End date: ' + json.Result[i].endDateMonth + ', ' + json.Result[i].endDateYear + '</p>' +
-				'<p>GPA: ' + json.Result[i].GPA + '</p>';
-		}
+		eduInfo += '<h5>' + json.Result[i].school + '</h5>' +
+		'<p>' + json.Result[i].degree + '</p>' +
+		'<p>Start date: ' + json.Result[i].startDateMonth + ', ' + json.Result[i].startDateYear + '</p>' +
+		'<p>End date: ' + json.Result[i].endDateMonth + ', ' + json.Result[i].endDateYear + '</p>' +
+		'<p>GPA: ' + json.Result[i].GPA + '</p>';
+	}
 	$("#meEdu").append(eduInfo);
 }
 
@@ -487,23 +476,21 @@ function listSchools(){
 	$.getJSON( "php/php_queries.php", { action:"listEducation", userID: ls})
 	.done(function(json){
 		listSchoolsSecondStage(json);
-		});	
+	});	
 }
 
 //List all schools 2nd process --- Education
 function listSchoolsSecondStage(json){
 	var str = "";
-		for (i=0; i<json.Result.length; i++) {
-			str += "<tr>";
-			str += "<td>" + json.Result[i].school + "</td>";
-			str += "<td>" + json.Result[i].degree + "</td>";
-			str += "<td><input id='btnEditEdu_" + json.Result[i].eduID + "' type='button' value='Edit' onclick='loadEducation(" + json.Result[i].eduID + ")'></td>";
-			str += "<td><input id='btnDelEdu_" + json.Result[i].eduID + "' type='button' value='Delete' onclick='delEducation(" + json.Result[i].eduID + ")'></td>";
-			
-			str += "</tr>";
-		
-		}
-		$('#schoolsDiv').html(str);
+	for (i=0; i<json.Result.length; i++) {
+		str += "<tr>";
+		str += "<td>" + json.Result[i].school + "</td>";
+		str += "<td>" + json.Result[i].degree + "</td>";
+		str += "<td><input id='btnEditEdu_" + json.Result[i].eduID + "' type='button' value='Edit' onclick='loadEducation(" + json.Result[i].eduID + ")'></td>";
+		str += "<td><input id='btnDelEdu_" + json.Result[i].eduID + "' type='button' value='Delete' onclick='delEducation(" + json.Result[i].eduID + ")'></td>";
+		str += "</tr>";
+	}
+	$('#schoolsDiv').html(str);
 }
 
 //Clear Education editor fields
@@ -533,18 +520,16 @@ function addSingleSchool(){
 	if ($('#txtGPA').val() == "" || $('#txtGPA').val() == null || $('#txtGPA').val() < 0 || $('#txtGPA').val() > 4){
 		feedback +="Error: Please fill in valid GPA. \n";
 	}
-	if( feedback.includes('Error:'))
-	{
+	if( feedback.includes('Error:')){
 		alert(feedback);
 	}
 	else
 	{
-	$.getJSON( "php/php_queries.php", { action:"addEducation", userID: ls, school: $('#txtSchoolName').val(), degree: $('#txtDegree').val(), startMonth: $('#txtEdStartMonth').val(), startYear: $('#txtEdStartYear').val(), endMonth: $('#txtEdEndMonth').val(), endYear: $('#txtEdEndYear').val(), GPA: $('#txtGPA').val() } );
-	setTimeout(function () {
-				 window.location.reload();
-					}, 100);
+		$.getJSON( "php/php_queries.php", { action:"addEducation", userID: ls, school: $('#txtSchoolName').val(), degree: $('#txtDegree').val(), startMonth: $('#txtEdStartMonth').val(), startYear: $('#txtEdStartYear').val(), endMonth: $('#txtEdEndMonth').val(), endYear: $('#txtEdEndYear').val(), GPA: $('#txtGPA').val() } );
+		setTimeout(function () {
+			window.location.reload();
+		}, 100);
 	}
-	
 }
 
 //Update Education
@@ -560,28 +545,23 @@ function updateEducation(){
 	if ($('#txtGPA').val() == "" || $('#txtGPA').val() == null || $('#txtGPA').val() < 0 || $('#txtGPA').val() > 4){
 		feedback +="Error: Please fill in valid GPA. \n";
 	}
-	if( feedback.includes('Error:'))
-	{
+	if( feedback.includes('Error:')){
 		alert(feedback);
 	}
-	else
-	{
-	$.getJSON( "php/php_queries.php", { action:"updateEducation", eduID: eduId, school: $('#txtSchoolName').val(), degree: $('#txtDegree').val(), startMonth: $('#txtEdStartMonth').val(), startYear: $('#txtEdStartYear').val(),endMonth: $('#txtEdEndMonth').val(), endYear: $('#txtEdEndYear').val(), GPA: $('#txtGPA').val()  } );
-	setTimeout(function () {
-				 window.location.reload();
-					}, 100);
+	else{
+		$.getJSON( "php/php_queries.php", { action:"updateEducation", eduID: eduId, school: $('#txtSchoolName').val(), degree: $('#txtDegree').val(), startMonth: $('#txtEdStartMonth').val(), startYear: $('#txtEdStartYear').val(),endMonth: $('#txtEdEndMonth').val(), endYear: $('#txtEdEndYear').val(), GPA: $('#txtGPA').val()  } );
+		setTimeout(function () {
+			window.location.reload();
+		}, 100);
 	}
-	
-	
 }
 
 //Delete a school --- Education
 function delEducation(eduId){
-	
 	$.getJSON( "php/php_queries.php", { action:"deleteEducation", eduID: eduId});
-		setTimeout(function () {
-				 window.location.reload();
-					}, 100);
+	setTimeout(function () {
+		window.location.reload();
+	}, 100);
 }
 
 /////////////////
@@ -597,9 +577,9 @@ function loadEmployer(empId){
 	$.getJSON( "php/php_queries.php", { action:"fillEmployer", empID: empId } )
 	.done(function(json){
 		fillEmployer(json, empId);
-				$("#btnEditEmployer").show();
+		$("#btnEditEmployer").show();
 		$("#btnAddEmployer2").hide();
-		});
+	});
 }
 
 //Fill in Employer
@@ -619,7 +599,6 @@ function fillEmployer(json, empId){
 	var empLin = json.Result[0].empLink;
 	$("#txtEmpLink").val(empLin);
 	var resp = json.Result[0].responsibilities;
-	
 	if(json.Result[0].responsibilities1 != null){
 		resp += "/" + json.Result[0].responsibilities1 ;			
 		if(json.Result[0].responsibilities2 != null){
@@ -658,66 +637,66 @@ function loadEmp(){
 	$.getJSON( "php/php_queries.php", { action:"listEmployer", userID: ls } )
 	.done(function(json){
 		fillEmp(json);
-		});
+	});
 }
 
 //Display Employer information
 function fillEmp(json){
 	var empInfo = '<h4>Work Experience</h4>';
 	for(i=0; i<json.Result.length; i++){
-				empInfo += '<a href="' + json.Result[i].empLink + '"><h5>' + json.Result[i].employerName + '</h5></a>' +
-				'<p>' + json.Result[i].position + '</p>'+
-				'<ul>' +
-					'<li>' + json.Result[i].responsibilities + '</li>' +
-				'</ul>';
-				if(json.Result[i].responsibilities1 != null){
-					empInfo += '<ul>' +
-					'<li>' + json.Result[i].responsibilities1 + '</li>' +
-				'</ul>';
-				}
-				if(json.Result[i].responsibilities2 != null){
-					empInfo += '<ul>' +
-					'<li>' + json.Result[i].responsibilities2 + '</li>' +
-				'</ul>';
-				}
-				if(json.Result[i].responsibilities3 != null){
-					empInfo += '<ul>' +
-					'<li>' + json.Result[i].responsibilities3 + '</li>' +
-				'</ul>';
-				}
-				if(json.Result[i].responsibilities4 != null){
-					empInfo += '<ul>' +
-					'<li>' + json.Result[i].responsibilities4 + '</li>' +
-				'</ul>';
-				}
-				if(json.Result[i].responsibilities5 != null){
-					empInfo += '<ul>' +
-					'<li>' + json.Result[i].responsibilities5 + '</li>' +
-				'</ul>';
-				}
-				if(json.Result[i].responsibilities6 != null){
-					empInfo += '<ul>' +
-					'<li>' + json.Result[i].responsibilities6 + '</li>' +
-				'</ul>';
-				}
-				if(json.Result[i].responsibilities7 != null){
-					empInfo += '<ul>' +
-					'<li>' + json.Result[i].responsibilities7 + '</li>' +
-				'</ul>';
-				}
-				if(json.Result[i].responsibilities8 != null){
-					empInfo += '<ul>' +
-					'<li>' + json.Result[i].responsibilities8 + '</li>' +
-				'</ul>';
-				}
-				if(json.Result[i].responsibilities9 != null){
-					empInfo += '<ul>' +
-					'<li>' + json.Result[i].responsibilities9 + '</li>' +
-				'</ul>';
-				}
-				empInfo += '<p>Start date: ' + json.Result[i].startDateMonth + ', ' + json.Result[i].startDateYear + '</p>' +
-				'<p>End date: ' + json.Result[i].endDateMonth + ', ' + json.Result[i].endDateYear + '</p>';
+		empInfo += '<a href="' + json.Result[i].empLink + '"><h5>' + json.Result[i].employerName + '</h5></a>' +
+		'<p>' + json.Result[i].position + '</p>'+
+		'<ul>' +
+			'<li>' + json.Result[i].responsibilities + '</li>' +
+		'</ul>';
+		if(json.Result[i].responsibilities1 != null){
+			empInfo += '<ul>' +
+			'<li>' + json.Result[i].responsibilities1 + '</li>' +
+		'</ul>';
 		}
+		if(json.Result[i].responsibilities2 != null){
+			empInfo += '<ul>' +
+			'<li>' + json.Result[i].responsibilities2 + '</li>' +
+		'</ul>';
+		}
+		if(json.Result[i].responsibilities3 != null){
+			empInfo += '<ul>' +
+			'<li>' + json.Result[i].responsibilities3 + '</li>' +
+		'</ul>';
+		}
+		if(json.Result[i].responsibilities4 != null){
+			empInfo += '<ul>' +
+			'<li>' + json.Result[i].responsibilities4 + '</li>' +
+		'</ul>';
+		}
+		if(json.Result[i].responsibilities5 != null){
+			empInfo += '<ul>' +
+			'<li>' + json.Result[i].responsibilities5 + '</li>' +
+		'</ul>';
+		}
+		if(json.Result[i].responsibilities6 != null){
+			empInfo += '<ul>' +
+			'<li>' + json.Result[i].responsibilities6 + '</li>' +
+		'</ul>';
+		}
+		if(json.Result[i].responsibilities7 != null){
+			empInfo += '<ul>' +
+			'<li>' + json.Result[i].responsibilities7 + '</li>' +
+		'</ul>';
+		}
+		if(json.Result[i].responsibilities8 != null){
+			empInfo += '<ul>' +
+			'<li>' + json.Result[i].responsibilities8 + '</li>' +
+		'</ul>';
+		}
+		if(json.Result[i].responsibilities9 != null){
+			empInfo += '<ul>' +
+			'<li>' + json.Result[i].responsibilities9 + '</li>' +
+		'</ul>';
+		}
+		empInfo += '<p>Start date: ' + json.Result[i].startDateMonth + ', ' + json.Result[i].startDateYear + '</p>' +
+		'<p>End date: ' + json.Result[i].endDateMonth + ', ' + json.Result[i].endDateYear + '</p>';
+	}
 	$("#meEmp").append(empInfo);
 }
 
@@ -727,28 +706,26 @@ function listEmployers(){
 	$.getJSON( "php/php_queries.php", { action:"listEmployer", userID: ls})
 	.done(function(json){
 		listEmployersSecondStage(json);
-		});
+	});
 }
 
 //List all Employers 2nd process
 function listEmployersSecondStage(json){
-		var str = "";
-		for (i=0; i<json.Result.length; i++) {
-			str += "<tr>";
-			str += "<td>" + json.Result[i].employerName + "</td>";
-			str += "<td>" + json.Result[i].position + "</td>";
-			str += "<td><input id='btnEditEmp_" + json.Result[i].empID + "' type='button' value='Edit' onclick='loadEmployer(" + json.Result[i].empID + ")'></td>";
-			str += "<td><input id='btnDelEmp_" + json.Result[i].empID + "' type='button' value='Delete' onclick='delEmployer(" + json.Result[i].empID + ")'></td>";
-			str += "</tr>";
-		
-		}
-		$('#companiesDiv').html(str);
+	var str = "";
+	for (i=0; i<json.Result.length; i++) {
+		str += "<tr>";
+		str += "<td>" + json.Result[i].employerName + "</td>";
+		str += "<td>" + json.Result[i].position + "</td>";
+		str += "<td><input id='btnEditEmp_" + json.Result[i].empID + "' type='button' value='Edit' onclick='loadEmployer(" + json.Result[i].empID + ")'></td>";
+		str += "<td><input id='btnDelEmp_" + json.Result[i].empID + "' type='button' value='Delete' onclick='delEmployer(" + json.Result[i].empID + ")'></td>";
+		str += "</tr>";
+	}
+	$('#companiesDiv').html(str);
 }
 
 //Clear Employer editor fields
 function clearEmpBoxes(){
-$("#txtEmpName").val("");
-	
+	$("#txtEmpName").val("");
 	$("#txtPosition").val("");
 	$(".txtEmpStartMonth").val("January");
 	$(".txtEmpStartYear").val("1960");
@@ -768,7 +745,6 @@ function addSingleEmployer(){
 	var maxResp = 10;   						//Max number of Responsibilities the database can hold
 	for(i = 0; i < maxResp; i++){
 		var responsibilities = "responsibilities" + i + "";
-		
 		eval("responsibilities" + i + "= respSplit.split('/')[i]");
 	}
 	if ($('#txtEmpName').val() == "" || $('#txtEmpName').val() == null){
@@ -777,18 +753,16 @@ function addSingleEmployer(){
 	if ($('#txtPosition').val() == "" || $('#txtPosition').val() == null){
 		feedback +="Error: Please fill in position. \n"
 	}
-	if( feedback.includes('Error:'))
-	{
+	if( feedback.includes('Error:')){
 		alert(feedback);
 	}
 	else
 	{
-			$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9 } );
-	setTimeout(function () {
-				 window.location.reload();
-					}, 100);
-	}
-	
+		$.getJSON( "php/php_queries.php", { action:"addEmployer", userID: ls, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9 } );
+		setTimeout(function () {
+			window.location.reload();
+		}, 100);
+	}	
 }
 
 //Update Employer
@@ -808,27 +782,24 @@ function updateEmployer(){
 	if ($('#txtPosition').val() == "" || $('#txtPosition').val() == null){
 		feedback +="Error: Please fill in position. \n"
 	}
-	if( feedback.includes('Error:'))
-	{
+	if( feedback.includes('Error:')){
 		alert(feedback);
 	}
-	else
-	{
-			$.getJSON( "php/php_queries.php", { action:"updateEmployment", empID: empId, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9  } );
-	setTimeout(function () {
-				 window.location.reload();
-					}, 100);
+	else{
+		$.getJSON( "php/php_queries.php", { action:"updateEmployment", empID: empId, employerName: $('#txtEmpName').val(), position: $('#txtPosition').val(), startMonth: $('#txtEmpStartMonth').val(), startYear: $('#txtEmpStartYear').val(), endMonth: $('#txtEmpEndMonth').val(), endYear: $('#txtEmpEndYear').val(), empLink: $('#txtEmpLink').val(), responsibilities: responsibilities0, responsibilities1: responsibilities1, responsibilities2: responsibilities2, responsibilities3: responsibilities3, responsibilities4: responsibilities4, responsibilities5: responsibilities5, responsibilities6: responsibilities6, responsibilities7: responsibilities7, responsibilities8: responsibilities8, responsibilities9: responsibilities9  } );
+		setTimeout(function () {
+			window.location.reload();
+		}, 100);
 	}
-
 }
 
 //Delete an Employer
 function delEmployer(empId){
 	
 	$.getJSON( "php/php_queries.php", { action:"deleteEmployer", empID: empId});
-		setTimeout(function () {
-				 window.location.reload();
-					}, 100);
+	setTimeout(function () {
+		window.location.reload();
+	}, 100);
 }
 
 ////////////////
@@ -845,36 +816,32 @@ function generateLink()
 	console.log('hi');
 	var linkCode = "";
 	var choices = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	
 	for(i=0;i<6;i++){
 		linkCode += choices.charAt(Math.floor(Math.random()*choices.length));
-		}	
-		checkLink(linkCode);
+	}	
+	checkLink(linkCode);
 }
 
 //Insert the generated link
 function insertLink(linkCode){
 	var ls = localStorage.getItem("userID");
 	var compName = $('#txtCompanyName').val();
-		$.getJSON( "php/php_queries.php", { action:"insertLink", userID: ls, linkCode: linkCode, compName: compName})
-//change when site changes
-		var usableLink = "<input type = 'text' value = 'http://ict.neit.edu/000484346/public_html/capstone/resume.html?"+linkCode+ "'/>";
-		$('#newLink').html(usableLink);	
+	$.getJSON( "php/php_queries.php", { action:"insertLink", userID: ls, linkCode: linkCode, compName: compName})
+	var usableLink = "<input type = 'text' value = 'http://ict.neit.edu/000484346/public_html/capstone/resume.html?"+linkCode+ "'/>";
+	$('#newLink').html(usableLink);	
 }
 
 //Load Generated link
 function loadLink(){
 	var ls = localStorage.getItem("userID");
-		$.getJSON( "php/php_queries.php", { action:"loadLink", userID: ls})
+	$.getJSON( "php/php_queries.php", { action:"loadLink", userID: ls})
 	.done(function(json){
-			
-			fillLinkDiv(json);
-		});
+		fillLinkDiv(json);
+	});
 }
 
 //Fill in links
 function fillLinkDiv(json){
-	
 	if(json.Result[0] != null){
 		var str = "";
 	str += "<table><tr><td> Company Name</td><td> Times Viewed</td></tr>";
@@ -885,7 +852,6 @@ function fillLinkDiv(json){
 			str += "<td><input id='btnDeactivate_" + json.Result[i].linkID + "' type='button' value='De-Activate' onclick='inactivateLink(" + json.Result[i].linkID + ")'></td>";
 			str += "</tr><tr>";
 			str += "<td colspan='3'><p>http://ict.neit.edu/000484346/public_html/capstone/resume.html?" + json.Result[i].link + "</p></td></tr>";
-		
 		}
 	str+="</table>"
 	$('#linkView').html(str);
@@ -894,21 +860,18 @@ function fillLinkDiv(json){
 
 //Check for a valid link
 function checkLink(linkCode){
-		$.getJSON( "php/php_queries.php", { action:"checkLink", linkCode: linkCode})
+	$.getJSON( "php/php_queries.php", { action:"checkLink", linkCode: linkCode})
 	.done(function(json){
-		
-			checkLink2(json, linkCode);
-		});
+		checkLink2(json, linkCode);
+	});
 }
 
 //Check for a valid link 2nd stage
 function checkLink2(json, linkCode){
-	if(json.Result == true)
-	{
+	if(json.Result == true){
 		generateLink();
 	}
-	else
-	{
+	else{
 		insertLink(linkCode);
 	}
 }
@@ -947,16 +910,13 @@ function resetLocalStorage(){
 ////////////////////////////
 
 $(document).ready(function(){
-	
 	$.autotab({ tabOnSelect: true });
 	$('.phoneNumber').autotab('filter', 'number');
 	$(".editWrap").draggable({ scroll: false, containment: "document" });
 	var ls = localStorage.getItem("userID");
 	if(ls == "" || ls == null){ 
-	window.location = "index.html";
-
-	}
-		
+		window.location = "index.html";
+	}	
 	else{
 		setTimeout(function () {
 			loadCover();
@@ -968,89 +928,64 @@ $(document).ready(function(){
 			listSchools();
 			loadLink();
 		}, 200);
-	
 	}
-
 	$("#styleChange").click(function(){
 		updateStyle();
 		setTimeout(function () {
-				window.location.reload();	
-					}, 100);
+			window.location.reload();	
+		}, 100);
 	});
-
 	$("#logout").click(function(){
 		resetLocalStorage();
 		setTimeout(function () {
-					window.location = "index.html";
-					}, 100);
+			window.location = "index.html";
+		}, 100);
 	});	
 	$(".btnGenerateLink").click(function(){
 		generateLink();
 		setTimeout(function () {
-				window.location.reload();	
-					}, 100);	
-		
+			window.location.reload();	
+		}, 100);		
 	});
 	$("#btnEditVideo").click(function(){
 		updateVid();
-			setTimeout(function () {
-					window.location.reload();
-					}, 100);
-		
+		setTimeout(function () {
+			window.location.reload();
+		}, 100);
 	});
 	$("#btnEditBasic").click(function(){
-		updateBasic();
-			
-		
+		updateBasic();	
 	});
 	$("#btnEditCover").click(function(){
 		updateCover();
-			setTimeout(function () {
-				window.location.reload();	
-					}, 100);
-		
+		setTimeout(function () {
+			window.location.reload();	
+		}, 100);
 	});
 	$("#btnAddSchool2").click(function(){
 		addSingleSchool();
-		
-				
-		
 	});
 	$("#btnEditSchool").click(function(){
-		updateEducation();
-		
-		
+		updateEducation();	
 	});
-	
 	$("#btnEditEmployer").click(function(){
-		
 		updateEmployer();
-			
-		
-		});
+	});
 	$("#btnGenerate").click(function(){
 		generateLink();
-			setTimeout(function () {
-					fillLink(); 
-					}, 100);
-		
-		});
+		setTimeout(function () {
+			fillLink(); 
+		}, 100);
+	});
 	$("#btnAddEmployer2").click(function(){
-		
 		addSingleEmployer();
-			
-		
 	});
 	$("#btnEditPicture").click(function(){
-		
 		updatePicture();
-			//test
-		
 	});
-	
 	$("#txtGPA").keyup(function(event){
-    if(event.keyCode == 13){
-        $("#btnAddSchool2").click();
-    }
+    	if(event.keyCode == 13){
+        	$("#btnAddSchool2").click();
+    	}
 	});
 });
